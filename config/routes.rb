@@ -1,5 +1,5 @@
 GCMServerTest::Application.routes.draw do
-  resources :receivers
+  resources :receivers, only: [:create, :update, :destroy]
 
 
   # The priority is based upon order of creation:
