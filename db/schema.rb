@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130421084019) do
+ActiveRecord::Schema.define(:version => 20130425011949) do
+
+  create_table "coupons", :force => true do |t|
+    t.integer  "coupon_num",                                   :null => false
+    t.string   "coupon_name",  :limit => 20,                   :null => false
+    t.string   "coupon_msg",   :limit => 50,                   :null => false
+    t.string   "company_name", :limit => 20,                   :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+    t.boolean  "coupon_state",               :default => true
+  end
 
   create_table "gcm_devices", :force => true do |t|
     t.string   "registration_id",    :null => false
