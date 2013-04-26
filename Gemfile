@@ -8,7 +8,7 @@ gem 'rails', '3.2.12'
 gem 'mysql2'
 gem 'gcm_on_rails'
 gem "paperclip", "~> 3.4.1"
-
+gem 'whenever', :require => false
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
