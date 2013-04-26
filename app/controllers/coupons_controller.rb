@@ -6,10 +6,12 @@ class CouponsController < ApplicationController
  	# POST /coupons.json
 	def create
 		@coupon = Coupon.new params[:coupon]
-		if @coupon.save
-			respond_to do |format|
+		respond_to do |format|
+			if @coupon.save
 				format.html {  }
 				format.json { render nothing: true }
+			else
+				format.json { render json: @coupon.errors, status: :unprocessable_entity }
 			end
 		end
 	end
