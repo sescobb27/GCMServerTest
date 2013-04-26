@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  entity_name: MyString
+  entity_email: MyString
+  coupon_id: 1
+  entity_telephone_number: MyString
+  entity_type: MyString
+  entity_category_id: 1
+
+two:
+  entity_name: MyString
+  entity_email: MyString
+  coupon_id: 1
+  entity_telephone_number: MyString
+  entity_type: MyString
+  entity_category_id: 1
