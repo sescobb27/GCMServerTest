@@ -11,16 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130425011949) do
+ActiveRecord::Schema.define(:version => 20130426002005) do
 
   create_table "coupons", :force => true do |t|
-    t.integer  "coupon_num",                                   :null => false
-    t.string   "coupon_name",  :limit => 20,                   :null => false
-    t.string   "coupon_msg",   :limit => 50,                   :null => false
-    t.string   "company_name", :limit => 20,                   :null => false
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
-    t.boolean  "coupon_state",               :default => true
+    t.integer  "coupon_num",                                                :null => false
+    t.string   "coupon_name",               :limit => 20,                   :null => false
+    t.string   "coupon_msg",                :limit => 50,                   :null => false
+    t.string   "company_name",              :limit => 20,                   :null => false
+    t.datetime "created_at",                                                :null => false
+    t.datetime "updated_at",                                                :null => false
+    t.boolean  "coupon_state",                            :default => true
+    t.string   "coupon_image_file_name"
+    t.string   "coupon_image_content_type"
+    t.integer  "coupon_image_file_size"
+    t.datetime "coupon_image_updated_at"
   end
 
   create_table "gcm_devices", :force => true do |t|
