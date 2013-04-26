@@ -15,6 +15,15 @@ class Coupon < ActiveRecord::Base
       coupon_num: "How many coupons do you want to make?",
     }.each do |attr, msg|
     	validates_presence_of attr, message: "#{msg}"
+      if attr == :coupon_msg
+          validates_length_of attr, within:10..50,
+                  too_long: "The coupon message length must be less than 50",
+                  too_short: "The coupon message length must be greater than 10"
+        else
+          validates_length_of attr, within: 2..20,
+                  too_long: "maximum value size is 20 chars",
+                  too_short: "the value length must be at least 2 chars"
+      end
     end
 
 	def to_h
