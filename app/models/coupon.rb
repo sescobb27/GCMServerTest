@@ -1,15 +1,20 @@
 class Coupon < ActiveRecord::Base
-  	attr_accessible :company_name, :coupon_msg, :coupon_name, :coupon_num,
+
+    # ===========================Attributes=====================================
+  	attr_accessible :entity_id, :coupon_msg, :coupon_name, :coupon_num,
   					:coupon_state, :coupon_image
 	  has_attached_file :coupon_image,
   		:styles => { :small => "100x100>" },
   		:url  => "/assets/users/:id/:style/:basename.:extension",
       :path => ":rails_root/public/assets/users/:id/:style/:basename.:extension",
       :default_url => ""
+    # ===========================end attributes=================================
+
+    # ===========================module validations=============================
     validates_attachment_size :coupon_image, :less_than => 2.megabytes
     validates_attachment_content_type :coupon_image, :content_type => ['image/jpeg', 'image/png']
 
-   { company_name: "Which is your company name?",
+   {
       coupon_msg: "Which is about your coupon?",
       coupon_name: "Which is the title of your coupon?",
       coupon_num: "How many coupons do you want to make?",
@@ -25,7 +30,14 @@ class Coupon < ActiveRecord::Base
                   too_short: "the value length must be at least 2 chars"
       end
     end
+    # =============================end validations==============================
 
+    # =============================model relationship===========================
+    belongs_to :entity, class_name: "Entity", foreign_key: "entity_id",
+                inverse_of: :coupons
+    # =============================end relationship=============================
+
+  # convert coupon object into a hash to send as json
 	def to_h
 		coupon_hash = Hash.new
 		coupon_hash[:coupon_name] = self.coupon_name
@@ -35,6 +47,9 @@ class Coupon < ActiveRecord::Base
 	end
 
 	private
+  # task to be executed every day at 12am (midnigth)
+  # update every coupon state to false which its state is true, it means every
+  # expire every coupon per day
 	def self.change_state
 		Coupon.update_all({ :coupon_state => false }, { :coupon_state => true })
 		puts "hola update"

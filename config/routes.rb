@@ -1,6 +1,7 @@
 GCMServerTest::Application.routes.draw do
   resources :receivers, only: [:create, :update, :destroy]
   resources :coupons, except: [:index, :destroy]
+  resources :entities
 
 
   # The priority is based upon order of creation:

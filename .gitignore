@@ -14,5 +14,6 @@
 /log/*.log
 /tmp
 
-# Ignore the database.yml
+# Ignore the database.yml and database model
 /config/*.yml
+/db/db_model.mwb
