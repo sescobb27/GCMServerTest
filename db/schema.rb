@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130503192812) do
+ActiveRecord::Schema.define(:version => 20130503204010) do
+
+  create_table "categories", :force => true do |t|
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.string   "category_name",        :limit => 15, :null => false
+    t.string   "category_description"
+  end
 
   create_table "coupons", :force => true do |t|
     t.integer  "coupon_num",                                                :null => false
@@ -36,6 +43,15 @@ ActiveRecord::Schema.define(:version => 20130503192812) do
   end
 
   add_index "entities", ["entity_name"], :name => "index_entities_on_entity_name", :unique => true
+
+  create_table "entity_categories", :force => true do |t|
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "entity_id",   :null => false
+    t.integer  "category_id", :null => false
+  end
+
+  add_index "entity_categories", ["entity_id"], :name => "index_entity_categories_on_entity_id"
 
   create_table "gcm_devices", :force => true do |t|
     t.string   "registration_id",    :null => false
@@ -65,6 +81,20 @@ ActiveRecord::Schema.define(:version => 20130503192812) do
     t.string   "name",          :null => false
     t.string   "email",         :null => false
     t.integer  "gcm_device_id", :null => false
+  end
+
+  create_table "type_categories", :force => true do |t|
+    t.integer  "type_id",     :null => false
+    t.integer  "category_id", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "types", :force => true do |t|
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.string   "type_name",        :limit => 15, :null => false
+    t.string   "type_description"
   end
 
 end
