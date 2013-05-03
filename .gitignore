@@ -17,3 +17,4 @@
 # Ignore the database.yml and database model
 /config/*.yml
 /db/db_model.mwb
+/.idea

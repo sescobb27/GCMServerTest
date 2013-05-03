@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130428060110) do
+ActiveRecord::Schema.define(:version => 20130503192812) do
 
   create_table "coupons", :force => true do |t|
     t.integer  "coupon_num",                                                :null => false
@@ -31,8 +31,6 @@ ActiveRecord::Schema.define(:version => 20130428060110) do
     t.string   "entity_name",             :limit => 20, :null => false
     t.string   "entity_email",            :limit => 20, :null => false
     t.string   "entity_telephone_number", :limit => 10, :null => false
-    t.string   "entity_type",                           :null => false
-    t.integer  "entity_category_id"
     t.datetime "created_at",                            :null => false
     t.datetime "updated_at",                            :null => false
   end

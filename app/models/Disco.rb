@@ -1,3 +1,0 @@
-class Disco < Entity
-	
-end
