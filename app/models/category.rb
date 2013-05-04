@@ -2,10 +2,17 @@ class Category < ActiveRecord::Base
 
     # ===========================Attributes=====================================
     attr_accessible :category_name, :category_description
-    RESTAURANT_CATEGORIES = { gourmet: 'Gourmet', typical: 'Typical', fast: 'Fast Food',
-                         arabic: 'Arabic', italian: 'Italian', mexican: 'Mexican' }
-    BAR_CATEGORIES = {}
-    DISCO_CATEGORIES = {}
+    CATEGORIES = {
+            restaurant: {
+                    gourmet: 'Gourmet', typical: 'Typical', fast: 'Fast Food',
+                    arabic: 'Arabic', italian: 'Italian', mexican: 'Mexican'
+            },
+            disco_bar: {
+                    shots: 'Shots', cocktails: 'Cocktails', crossover: 'Crossover',
+                    tropical: 'Tropical', tango: 'Tango', fonda: 'Fonda',
+                    electro: 'Techno'
+            }
+    }
     # ===========================end attributes=================================
 
     # =============================model relationship===========================
