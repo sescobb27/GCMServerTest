@@ -29,5 +29,7 @@ class Entity < ActiveRecord::Base
 
 	# =============================model relationship===========================
 	has_many :coupons, inverse_of: :entity
+    has_many :entity_categories
+    has_many :categories, through: :entity_categories
 	# =============================end relationship=============================
 end

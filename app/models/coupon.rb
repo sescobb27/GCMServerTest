@@ -47,7 +47,7 @@ class Coupon < ActiveRecord::Base
   	end
 
   	private
-    # task to be executed every day at 12am (midnigth)
+    # task to be executed every day at 12am (midnight)
     # update every coupon state to false which its state is true, it means every
     # expire every coupon per day
   	def self.change_state
