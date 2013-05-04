@@ -5,3 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+# Category::CATEGORIES is a Hash of Hashes containing the valid categories for each type
+Category::CATEGORIES.each_value do |type_dict|
+    type_dict.each_value do |category_name|
+        Category.create category_name: category_name
+    end
+end
+
+# Type::VALID_TYPES is a hash containing the valid types
+Type::VALID_TYPES.each_value do |type_name|
+    Type.create type_name: type_name
+end
