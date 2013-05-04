@@ -1,12 +1,10 @@
 class Entity < ActiveRecord::Base
 
 	# ===========================Attributes=====================================
-	# VALID_TYPES = { restaurant: 'Restaurant', disco: 'Disco', bar: 'Bar' }
   	attr_accessible :entity_email, :entity_name, :entity_telephone_number
   	# ===========================end attributes=================================
   	
   	# ===========================module validations=============================
-	# validates_inclusion_of :entity_type, in: VALID_TYPES.values
 	validates_format_of :entity_email,
 				with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create
 	validates_uniqueness_of :entity_email, :entity_name, message: 'This name or email already exist'
