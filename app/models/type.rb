@@ -5,7 +5,7 @@ class Type < ActiveRecord::Base
     VALID_TYPES = { restaurant: 'Restaurant', disco: 'Disco', bar: 'Bar' }
     # ===========================end attributes=================================
 
-    # ===========================module validations=============================
+    # ===========================model validations=============================
     validates_inclusion_of :type_name, in: VALID_TYPES.values
     # =============================end validations==============================
 

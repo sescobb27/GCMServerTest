@@ -1,10 +1,10 @@
 class Entity < ActiveRecord::Base
 
 	# ===========================Attributes=====================================
-  	attr_accessible :entity_email, :entity_name, :entity_telephone_number
-  	# ===========================end attributes=================================
+  attr_accessible :entity_email, :entity_name, :entity_telephone_number
+  # ===========================end attributes=================================
   	
-  	# ===========================module validations=============================
+  # ===========================model validations=============================
 	validates_format_of :entity_email,
 				with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create
 	validates_uniqueness_of :entity_email, :entity_name, message: 'This name or email already exist'
@@ -27,7 +27,9 @@ class Entity < ActiveRecord::Base
 
 	# =============================model relationship===========================
 	has_many :coupons, inverse_of: :entity
-    has_many :entity_categories
-    has_many :categories, through: :entity_categories
+  has_many :entity_categories
+  has_many :categories, through: :entity_categories
+  has_many :user_entities
+  has_many :user, through: :user_entities
 	# =============================end relationship=============================
 end
