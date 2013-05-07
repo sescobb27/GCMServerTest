@@ -32,4 +32,12 @@ class Entity < ActiveRecord::Base
   has_many :user_entities
   has_many :user, through: :user_entities
 	# =============================end relationship=============================
+
+  def add_categories(arr_categories)
+    categories = Category.where category_name: arr_categories
+    categories.each do |category|
+      self.categories << category
+    end
+    self.save
+  end
 end

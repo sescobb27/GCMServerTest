@@ -10,7 +10,7 @@ class Category < ActiveRecord::Base
             disco_bar: {
                     shots: 'Shots', cocktails: 'Cocktails', crossover: 'Crossover',
                     tropical: 'Tropical', tango: 'Tango', fonda: 'Fonda',
-                    electro: 'Techno'
+                    electro: 'Techno', reggaeton: 'Reggaeton'
             }
     }
     # ===========================end attributes=================================

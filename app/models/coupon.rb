@@ -12,7 +12,7 @@ class Coupon < ActiveRecord::Base
 
     # ===========================model validations=============================
     validates_attachment_size :coupon_image, less_than: 2.megabytes
-    validates_attachment_content_type :coupon_image, :content_type => %w(image/jpeg, image/png)
+    validates_attachment_content_type :coupon_image, :content_type => %w(image/jpeg image/png)
 
     {
       coupon_msg: 'Which is about your coupon?',

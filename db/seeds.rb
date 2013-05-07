@@ -17,3 +17,15 @@ end
 Type::VALID_TYPES.each_value do |type_name|
     Type.create type_name: type_name
 end
+
+types = Type.all
+types.each do |type|
+  case type.type_name
+    when Type::VALID_TYPES[:restaurant]
+      type.add_category Category::CATEGORIES[:restaurant]
+    when Type::VALID_TYPES[:disco]
+      type.add_category Category::CATEGORIES[:disco_bar]
+    when Type::VALID_TYPES[:bar]
+      type.add_category Category::CATEGORIES[:disco_bar]
+  end
+end

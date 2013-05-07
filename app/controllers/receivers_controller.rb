@@ -7,7 +7,7 @@ class ReceiversController < ApplicationController
   # POST /receivers.json
   def create
     puts "Params ->"+params.to_s
-    device = Receiver.exist? params["regId"]
+    device = verify_existence
     unless device
       Receiver.add_to_database params
     end
@@ -17,7 +17,7 @@ class ReceiversController < ApplicationController
   # PUT /receivers/1
   # PUT /receivers/1.json
   def update
-    device = Receiver.exist? params["regId"]
+    device = verify_existence
     if device
       device.update_attributes registration_id: params["newregId"]
       render :nothing => true
@@ -29,7 +29,7 @@ class ReceiversController < ApplicationController
   # DELETE /receivers/1
   # DELETE /receivers/1.json
   def destroy
-    gcm_device = Receiver.exist? params["regId"]
+    gcm_device = verify_existence
     if gcm_device
       Receiver.where(gcm_device_id: gcm_device.id).first.delete
       Gcm::Device.delete(gcm_device.id)
@@ -37,5 +37,20 @@ class ReceiversController < ApplicationController
     else
       render :text => "No device with this resgistration_id"
     end
+  end
+
+  def add_entity
+    device = verify_existence
+    if device
+      receiver = Receiver.where(gcm_device_id: device.id).first
+      user = receiver.user
+      likes = Receiver.to_str_arr params[:likes].to_s
+      user.add_entities likes
+    end
+  end
+
+  private
+  def verify_existence
+    Receiver.exist? params["regId"]
   end
 end

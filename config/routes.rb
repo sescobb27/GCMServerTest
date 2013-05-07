@@ -1,5 +1,9 @@
 GCMServerTest::Application.routes.draw do
-  resources :receivers, only: [:create, :update, :destroy]
+  resources :receivers, only: [:create, :update, :destroy] do
+    member do
+      put 'add_entity'
+    end
+  end
   resources :coupons, except: [:index, :destroy]
   resources :entities
   

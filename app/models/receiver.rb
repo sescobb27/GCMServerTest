@@ -15,11 +15,9 @@ class Receiver < ActiveRecord::Base
 
     # en los param viene un atributo likes que son unos strings concatenados con ','
     # que hacen referencia a las entidades que le gustan al usuario
-    likes = req_params['likes'].to_s.split(',').each do |like|
-      like.strip!
-    end
+    likes = to_str_arr req_params['likes'].to_s
     # asignar entidades (restaurantes, bares o discotecas) al usuario
-    user.entities = Entity.where entity_name: likes
+    user.add_entities Entity.where entity_name: likes
 
     # si el usuario es agregado satisfactoriamente tambien guardar el gcm::device
     # y el receiver
@@ -28,5 +26,11 @@ class Receiver < ActiveRecord::Base
       Receiver.create gcm_device_id: gcm_device.id, user: user
     end
 
+  end
+
+  def self.to_str_arr(str)
+    str.split(',').each do |like|
+      like.strip!
+    end
   end
 end
