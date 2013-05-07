@@ -15,9 +15,11 @@ class User < ActiveRecord::Base
   # =============================end relationship=============================
 
   def add_entities(entities_arr)
+    entities_arr = Entity.where entity_name: entities_arr
     entities_arr.each do |entity|
       self.entities << entity
     end
+    self.save
   end
 
 end

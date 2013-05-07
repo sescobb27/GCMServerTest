@@ -17,7 +17,7 @@ class Receiver < ActiveRecord::Base
     # que hacen referencia a las entidades que le gustan al usuario
     likes = to_str_arr req_params['likes'].to_s
     # asignar entidades (restaurantes, bares o discotecas) al usuario
-    user.add_entities Entity.where entity_name: likes
+    user.add_entities likes
 
     # si el usuario es agregado satisfactoriamente tambien guardar el gcm::device
     # y el receiver
