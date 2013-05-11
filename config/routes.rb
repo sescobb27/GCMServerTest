@@ -11,7 +11,7 @@ GCMServerTest::Application.routes.draw do
   end
 
   resources :categories, except: [:show]
-
+  resources :types
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,0 +1,10 @@
+<%= form_for @type do |form| %>
+
+    <%= form.label :type_name %>
+    <%= form.text_field :type_name %>
+
+    <%= form.label :type_description %>
+    <%= form.text_field :type_description %>
+
+    <%= form.submit 'Nuevo tipo' %>
+<% end %>
