@@ -1,0 +1,10 @@
+<%= form_for @category do |form| %>
+
+    <%= form.label :category_name %>
+    <%= form.text_field :category_name %>
+
+    <%= form.label :category_description %>
+    <%= form.text_field :category_description %>
+
+    <%= form.submit 'Nueva Categoria' %>
+<% end %>
