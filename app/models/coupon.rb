@@ -35,6 +35,8 @@ class Coupon < ActiveRecord::Base
     # =============================model relationship===========================
     belongs_to :entity, class_name: 'Entity', foreign_key: 'entity_id',
                 inverse_of: :coupons
+    has_many :user_coupons
+    has_many :users, through: :user_coupons
     # =============================end relationship=============================
 
     # convert coupon object into a hash to send as json

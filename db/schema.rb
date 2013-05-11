@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130507182027) do
+ActiveRecord::Schema.define(:version => 20130511031817) do
 
   create_table "categories", :force => true do |t|
     t.datetime "created_at",                         :null => false
@@ -95,6 +95,17 @@ ActiveRecord::Schema.define(:version => 20130507182027) do
     t.string   "type_name",        :limit => 15, :null => false
     t.string   "type_description"
   end
+
+  create_table "user_coupons", :force => true do |t|
+    t.integer  "user_id",                  :null => false
+    t.integer  "coupon_id",                :null => false
+    t.string   "auth_token", :limit => 10, :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  add_index "user_coupons", ["coupon_id"], :name => "index_user_coupons_on_coupon_id"
+  add_index "user_coupons", ["user_id"], :name => "index_user_coupons_on_user_id"
 
   create_table "user_entities", :force => true do |t|
     t.integer  "user_id",    :null => false
