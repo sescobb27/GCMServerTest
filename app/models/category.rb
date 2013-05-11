@@ -15,6 +15,12 @@ class Category < ActiveRecord::Base
     }
     # ===========================end attributes=================================
 
+    # ===========================model validations=============================
+    validates_uniqueness_of :category_name, message: 'This category name already exist'
+    validates_presence_of :category_name, message: 'Category name can\'t be blank'
+    validates_length_of :category_name, too_short: 'Category name must have at least 3 characters length'
+    # =============================end validations==============================
+
     # =============================model relationship===========================
     has_many :type_categories
     has_many :types, through: :type_categories
