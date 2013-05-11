@@ -19,7 +19,7 @@ class CategoriesController < ApplicationController
       if @category.save
         format.html { redirect_to categories_path, notice: "#{@category.category_name} creada" }
       else
-        format.html { render action: 'create' }
+        format.html { render action: 'new' }
       end
     end
   end
