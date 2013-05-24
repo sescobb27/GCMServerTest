@@ -18,3 +18,9 @@
 /config/*.yml
 /db/db_model.mwb
 /.idea
+*.pdf
+*.mwb
+
+# Ignore the doc model images
+/doc/*.svg
+*.pptx
