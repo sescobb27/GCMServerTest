@@ -23,4 +23,6 @@
 
 # Ignore the doc model images
 /doc/*.svg
+/doc/*.png
+/doc
 *.pptx
