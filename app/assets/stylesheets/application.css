@@ -11,3 +11,56 @@
  *= require_self
  *= require_tree .
  */
+h1 {
+    color: rgb(42, 113, 158);
+    font-family: 'Komika Axis';
+    font-size: 10.5em;
+    line-height: 140%;
+    margin: 20px auto;
+    text-align: center;
+    text-rendering: optimizelegibility;
+
+}
+.categories{
+
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+
+    -webkit-column-width: 5em;
+    -moz-column-width: 5em;
+    column-width: 5em;
+
+    -webkit-column-gap: 1em;
+    -moz-column-gap: 1em;
+    column-gap: 1em;
+
+    margin: 0 auto;
+    width: 100%;
+    padding: 1em;
+}
+
+.categories .category {
+
+    border:3px solid #ffdcc6;
+
+    border-width: 100%;
+    border-radius: 0.5em;
+    -moz-border-radius: 0.5em;
+    -webkit-border-radius: 0.5em;
+
+    box-shadow: 5px 5px 5px #2f4f4f;
+    -moz-box-shadow: 5px 5px 5px #2f4f4f;
+    -webkit-box-shadow: 5px 5px 5px #2f4f4f;
+
+    font-family: 'Komika Axis';
+    font-size: 3.5em;
+    margin: 1em;
+    opacity: 0.5;
+}
+
+.category h2 {
+    font-size: inherit;
+    text-align: center;
+    position: inherit;
+}
