@@ -1,7 +1,7 @@
 class Entity < ActiveRecord::Base
 
 	# ===========================Attributes=====================================
-  attr_accessible :entity_email, :entity_name, :entity_telephone_number
+  attr_accessible :entity_email, :entity_name, :entity_telephone_number, :categories_attributes
   # ===========================end attributes=================================
   	
   # ===========================model validations=============================
@@ -31,6 +31,7 @@ class Entity < ActiveRecord::Base
   has_many :categories, through: :entity_categories
   has_many :user_entities
   has_many :user, through: :user_entities
+  accepts_nested_attributes_for :categories
 	# =============================end relationship=============================
 
   def add_categories(arr_categories)

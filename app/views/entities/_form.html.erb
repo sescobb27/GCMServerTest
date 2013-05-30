@@ -1,0 +1,9 @@
+<%= form_for @entity do |form| %>
+  <%= form.label :entity_name, 'Company Name' %>
+  <%= form.text_field :entity_name %>
+  <%= form.label :entity_email, 'Email' %>
+  <%= form.text_field :entity_email %>
+  <%= form.label :entity_telephone_number, 'Contact number' %>
+  <%= form.text_field :entity_telephone_number %>
+  <%= form.submit 'Crear' %>
+<% end %>

@@ -1,7 +1,7 @@
 class TypesController < ApplicationController
 
   def index
-    @types = Type::VALID_TYPES.values
+    @types = get_types
     respond_to do |format|
       format.html
       format.js
