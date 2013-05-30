@@ -13,3 +13,18 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+function modify_response (div) {
+  $('.wrapper').css({'width':'50%', 'margin':'0px auto'})
+  $(div).removeClass('choose-types').addClass('show-types');
+}
+$(document).ready(function() {
+  $('.choose-types').on('click', function(){
+    $.get(
+        "/types",
+        function(result){
+          $('.choose-types').html(result)
+          modify_response('.choose-types')
+        }
+      );
+  });
+});

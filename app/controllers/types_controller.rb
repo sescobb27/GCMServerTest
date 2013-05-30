@@ -1,10 +1,11 @@
 class TypesController < ApplicationController
 
   def index
-    @types = get_types
+    @types = Type::VALID_TYPES.values
     respond_to do |format|
-      format.html
-      format.js
+      #format.html { render partial: 'show', layout: false, collection: @types }
+      format.html { render partial: 'show', layout: false, locals: { :@types => @types } }
+      format.js { }
     end
   end
 
