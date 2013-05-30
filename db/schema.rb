@@ -11,13 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130511031817) do
+ActiveRecord::Schema.define(:version => 20130530014206) do
 
   create_table "categories", :force => true do |t|
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
     t.string   "category_name",        :limit => 15, :null => false
     t.string   "category_description"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
   create_table "coupons", :force => true do |t|
@@ -90,10 +94,14 @@ ActiveRecord::Schema.define(:version => 20130511031817) do
   end
 
   create_table "types", :force => true do |t|
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.string   "type_name",        :limit => 15, :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.string   "type_name",            :limit => 15, :null => false
     t.string   "type_description"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
   create_table "user_coupons", :force => true do |t|
