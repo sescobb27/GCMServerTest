@@ -1,9 +1,9 @@
-<table>
-    <% @types.each_with_index do |type,index| %>
-    <% tr_class = (index % 2 == 0) ? 'even' : 'odd' %>
-      <tr class=<%= tr_class %>>
-        <%= type %>
-      </tr>
+<h1>Types</h1>
+<section class="types">
+    <% @types.each do |type| %>
+      <div class="type">
+        <h2><%= type %></h2>
+      </div>
     <% end %>
-</table>
+</section>
 <%= link_to 'New Type', new_type_path %>
