@@ -3,6 +3,11 @@ class Type < ActiveRecord::Base
   # ===========================Attributes=====================================
   attr_accessible :type_name, :type_description
   VALID_TYPES = { restaurant: 'Restaurant', disco: 'Disco', bar: 'Bar' }
+  has_attached_file :picture,
+                    :styles => { :medium => '400x400>' },
+                    :url  => '/assets/users/:id/:style/:basename.:extension',
+                    :path => ':rails_root/public/assets/users/:id/:style/:basename.:extension',
+                    :default_url => ''
   # ===========================end attributes=================================
 
   # ===========================model validations=============================
@@ -10,6 +15,8 @@ class Type < ActiveRecord::Base
   validates_presence_of :type_name
   validates_uniqueness_of :type_name, message: 'This type name already exist'
   validates_length_of :type_name, minimum: 3, message: 'Type name must have at least 3 characters length'
+  validates_attachment_size :picture, less_than: 3.megabytes
+  validates_attachment_content_type :picture, :content_type => %w(image/jpeg image/png)
   after_save :add_to_valid_types
   # =============================end validations==============================
 
