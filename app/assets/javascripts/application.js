@@ -13,18 +13,43 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-function modify_response (div) {
-  $('.wrapper').css({'width':'50%', 'margin':'0px auto'})
-  $(div).removeClass('choose-types').addClass('show-types');
+function initialize (section) {
+  section.find('.type').each(function(index){
+    $(this).on('click', function(event){
+      var type = $(this).data('name');
+      $.ajax("/category_type/"+type, {
+        cache: true,
+        success: function(result) {
+          $(this.body).append(result);
+        }
+      });
+    });
+  });
+}
+function modify_response (section) {
+    $('.wrapper').css({'width':'50%', 'margin':'0px auto'})
+    section.removeClass('choose-types').addClass('show-types');
+    initialize(section);
 }
 $(document).ready(function() {
-  $('.choose-types').on('click', function(){
-    $.get(
-        "/types",
-        function(result){
-          $('.choose-types').html(result)
-          modify_response('.choose-types')
+    $('.choose-types').on('click', function(){
+        $.ajax(
+            '/types',{
+            cache: true,
+            success: function(result){
+            $('.choose-types').html(result)
+            modify_response($('.choose-types'))
+            }
         }
-      );
+        );
+    });
+    $(".type").on("click", function(event) {
+    $.ajax("/category_type/Restaurant", {
+        data: { type: event.target.getAttribute('data-name') },
+        cache: true,
+        success: function(result) {
+          $(this).appendChild(result);
+        }
   });
+});
 });

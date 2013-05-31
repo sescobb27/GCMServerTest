@@ -1,9 +1,2 @@
-<h1>Categories</h1>
-<section class="categories">
-  <% @categories.each_with_index do |category,index| %>
-    <div class="category" title=<%= category.category_description %> >
-      <h2><%= category.category_name %></h2>
-    </div>
-  <% end %>
-</section>
+<%= render 'categories' %>
 <%= link_to 'New Category', new_category_path %>

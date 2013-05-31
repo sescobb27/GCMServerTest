@@ -1,5 +1,6 @@
 GCMServerTest::Application.routes.draw do
 
+  match 'category_type/:type' => 'types#category_by_type'
   resources :receivers, only: [:create, :update, :destroy] do
     member do
       put 'add_entity'
@@ -11,7 +12,11 @@ GCMServerTest::Application.routes.draw do
   end
 
   resources :categories, except: [:show]
-  resources :types, except: [:show]
+  resources :types, except: [:show] do
+    member do
+      get 'category_by_type'
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

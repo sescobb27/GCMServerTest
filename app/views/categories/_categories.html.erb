@@ -1,0 +1,8 @@
+<h1>Categories</h1>
+<section class="categories">
+  <% @categories.each do |category| %>
+      <div class="category" title=<%= category.category_description %> >
+        <h2><%= category.category_name %></h2>
+      </div>
+  <% end %>
+</section>

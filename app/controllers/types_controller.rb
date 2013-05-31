@@ -3,7 +3,6 @@ class TypesController < ApplicationController
   def index
     @types = Type::VALID_TYPES.values
     respond_to do |format|
-      #format.html { render partial: 'show', layout: false, collection: @types }
       format.html { render partial: 'show', layout: false, locals: { :@types => @types } }
       format.js { }
     end
@@ -21,6 +20,18 @@ class TypesController < ApplicationController
       else
         format.html { render action: 'new' }
       end
+    end
+  end
+
+  def category_by_type
+    @categories = Type.where('type_name = ?',params[:type])
+                      .select('category_name, category_description')
+                      .joins :categories
+    respond_to do |format|
+      format.html { render partial: 'categories/categories',
+                           locals: { :@categories => @categories },
+                           layout: false
+      }
     end
   end
 end
