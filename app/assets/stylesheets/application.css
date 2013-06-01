@@ -69,3 +69,11 @@ h1 {
     position: relative;
     float: none;
 }
+.category_type {
+    position: absolute;
+    float: right;
+    font-size: inherit;
+    width: inherit;
+    background-color: black;
+    display: block;
+}

@@ -29,7 +29,7 @@ class TypesController < ApplicationController
                       .joins :categories
     respond_to do |format|
       format.html { render partial: 'categories/categories',
-                           locals: { :@categories => @categories },
+                           locals: { :@categories => @categories, type: params[:type] },
                            layout: false
       }
     end

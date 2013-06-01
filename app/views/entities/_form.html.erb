@@ -1,3 +1,4 @@
+<h1>Join us</h1>
 <%= form_for @entity do |form| %>
   <%= form.label :entity_name, 'Company Name' %>
   <%= form.text_field :entity_name %>
@@ -5,10 +6,10 @@
   <%= form.text_field :entity_email %>
   <%= form.label :entity_telephone_number, 'Contact number' %>
   <%= form.text_field :entity_telephone_number %>
-  <section class="wrapper">
-    <section class="choose-types">
-      <h2>Types</h2>
-    </section>
-  </section>
-  <%= form.submit 'Crear' %>
+  <%= form.submit 'Awesome', id: 'new' %>
 <% end %>
+<section class="wrapper">
+  <section class="choose-types">
+    <h2>Types</h2>
+  </section>
+</section>
