@@ -15,8 +15,7 @@ h1 {
     color: rgb(42, 113, 158);
     font-family: 'Komika Axis';
     font-size: 10.5em;
-    line-height: 140%;
-    margin: 20px auto;
+    margin: 0 auto;
     text-align: center;
     text-rendering: optimizelegibility;
 
@@ -36,15 +35,15 @@ h1 {
     column-gap: 1em;
 
     margin: 0 auto;
-    padding: 1em 1em;
-    width: 98%;
+    width: 35%;
+
+    font-size: 2em;
 }
 
-.categories .category, .types .type, .choose-types {
+.categories .category, .types .type {
 
     border:3px solid #ffdcc6;
 
-    border-width: 100%;
     border-radius: 0.5em;
     -moz-border-radius: 0.5em;
     -webkit-border-radius: 0.5em;
@@ -52,28 +51,16 @@ h1 {
     box-shadow: 5px 5px 5px #2f4f4f;
     -moz-box-shadow: 5px 5px 5px #2f4f4f;
     -webkit-box-shadow: 5px 5px 5px #2f4f4f;
+    opacity: 0.5;
 
     font-family: 'Komika Axis';
-    font-size: 3.5em;
-    opacity: 0.5;
-}
-
-.category h2, .type h2, .choose-types h2{
-    font-size: inherit;
     text-align: center;
-    position: inherit;
+    margin: 0 auto;
+    padding: 1em 1em;
 }
 
-.wrapper {
-    width: 15%;
-    position: relative;
-    float: none;
-}
-.category_type {
-    position: absolute;
-    float: right;
-    font-size: inherit;
-    width: inherit;
-    background-color: black;
-    display: block;
+.type, .category {
+    margin-bottom: 1em;
+    margin-top: 1em;
+    width: 65%;
 }

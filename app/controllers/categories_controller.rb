@@ -3,8 +3,9 @@ class CategoriesController < ApplicationController
   def index
     @categories = Category.all
 
+
     respond_to do |format|
-      format.html
+      format.html { render  action: :index, locals: { type: nil }}
       format.js
     end
   end

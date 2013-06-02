@@ -1,11 +1,23 @@
 <h1>Join us</h1>
 <%= form_for @entity do |form| %>
+    <% if @entity.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@entity.errors.count, 'error') %> prohibited this line_item from being saved:</h2>
+
+          <ul>
+            <% @entity.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
   <%= form.label :entity_name, 'Company Name' %>
   <%= form.text_field :entity_name %>
   <%= form.label :entity_email, 'Email' %>
   <%= form.text_field :entity_email %>
   <%= form.label :entity_telephone_number, 'Contact number' %>
   <%= form.text_field :entity_telephone_number %>
+  <%= form.hidden_field :categories, id: 'entity_categories' %>
   <%= form.submit 'Awesome', id: 'new' %>
 <% end %>
 <section class="wrapper">

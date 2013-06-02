@@ -1,7 +1,7 @@
 class Entity < ActiveRecord::Base
 
 	# ===========================Attributes=====================================
-  attr_accessible :entity_email, :entity_name, :entity_telephone_number, :categories_attributes
+  attr_accessible :entity_email, :entity_name, :entity_telephone_number#, :categories
   # ===========================end attributes=================================
   	
   # ===========================model validations=============================
@@ -17,7 +17,7 @@ class Entity < ActiveRecord::Base
 	 		validates_format_of attr, with: /(\d\d\d-\d\d-\d\d)|(\d{7})/,
 	 					message: 'The contact number format must be ###-##-## or #######'
 	 	else
-	 		validates_length_of attr, within:2..20,
+	 		validates_length_of attr, within:2..35,
  						too_long: 'maximum value size is 20 chars',
  						too_short: 'the value length must be at least 2 chars'
 
@@ -31,7 +31,6 @@ class Entity < ActiveRecord::Base
   has_many :categories, through: :entity_categories
   has_many :user_entities
   has_many :user, through: :user_entities
-  accepts_nested_attributes_for :categories
 	# =============================end relationship=============================
 
   def add_categories(arr_categories)

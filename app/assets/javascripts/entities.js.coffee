@@ -20,9 +20,11 @@
 #        width: "20%"
 #        margin: "0px auto"
 
+entity_categories = {}
 
 add_category = (section) ->
   selection = []
+  entity_categories = "categories": selection
   section.each ->
     $(this).addClass("unselected")
     $(this).on 'click', ->
@@ -78,3 +80,11 @@ $(document).ready ->
           show_type.html result
           eventos show_type.find(".type")
       )
+  $('#new_entity').submit ->
+    if entity_categories["categories"] == undefined
+      alert('You must select at least one category for your company')
+      return false
+    else if entity_categories["categories"].length == 0
+      alert('You must select at least one category for your company')
+      return false
+    $(this).find('#entity_categories').val JSON.stringify entity_categories["categories"]
