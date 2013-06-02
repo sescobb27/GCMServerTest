@@ -1,5 +1,8 @@
 GCMServerTest::Application.routes.draw do
 
+  get 'smart_out/index'
+  root to: 'store#index', as: 'index'
+
   match 'category_type/:type' => 'types#category_by_type'
   resources :receivers, only: [:create, :update, :destroy] do
     member do
