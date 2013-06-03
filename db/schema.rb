@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130530014206) do
+ActiveRecord::Schema.define(:version => 20130603082944) do
 
   create_table "categories", :force => true do |t|
     t.datetime "created_at",                         :null => false
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(:version => 20130530014206) do
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
   end
+
+  add_index "categories", ["category_name"], :name => "index_categories_on_category_name", :unique => true
 
   create_table "coupons", :force => true do |t|
     t.integer  "coupon_num",                                                :null => false
@@ -38,6 +40,8 @@ ActiveRecord::Schema.define(:version => 20130530014206) do
     t.integer  "entity_id",                                                 :null => false
   end
 
+  add_index "coupons", ["entity_id"], :name => "index_coupons_on_entity_id"
+
   create_table "entities", :force => true do |t|
     t.string   "entity_name",             :limit => 20, :null => false
     t.string   "entity_email",            :limit => 20, :null => false
@@ -46,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20130530014206) do
     t.datetime "updated_at",                            :null => false
   end
 
+  add_index "entities", ["entity_email"], :name => "index_entities_on_entity_email", :unique => true
   add_index "entities", ["entity_name"], :name => "index_entities_on_entity_name", :unique => true
 
   create_table "entity_categories", :force => true do |t|
@@ -55,6 +60,7 @@ ActiveRecord::Schema.define(:version => 20130530014206) do
     t.integer  "category_id", :null => false
   end
 
+  add_index "entity_categories", ["category_id"], :name => "index_entity_categories_on_category_id"
   add_index "entity_categories", ["entity_id"], :name => "index_entity_categories_on_entity_id"
 
   create_table "gcm_devices", :force => true do |t|
@@ -86,12 +92,17 @@ ActiveRecord::Schema.define(:version => 20130530014206) do
     t.integer  "user_id",       :null => false
   end
 
+  add_index "receivers", ["user_id"], :name => "index_receivers_on_user_id", :unique => true
+
   create_table "type_categories", :force => true do |t|
     t.integer  "type_id",     :null => false
     t.integer  "category_id", :null => false
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  add_index "type_categories", ["category_id"], :name => "index_type_categories_on_category_id"
+  add_index "type_categories", ["type_id"], :name => "index_type_categories_on_type_id"
 
   create_table "types", :force => true do |t|
     t.datetime "created_at",                         :null => false
@@ -103,6 +114,8 @@ ActiveRecord::Schema.define(:version => 20130530014206) do
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
   end
+
+  add_index "types", ["type_name"], :name => "index_types_on_type_name", :unique => true
 
   create_table "user_coupons", :force => true do |t|
     t.integer  "user_id",                  :null => false
@@ -122,6 +135,9 @@ ActiveRecord::Schema.define(:version => 20130530014206) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "user_entities", ["entity_id"], :name => "index_user_entities_on_entity_id"
+  add_index "user_entities", ["user_id"], :name => "index_user_entities_on_user_id"
+
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
@@ -129,5 +145,7 @@ ActiveRecord::Schema.define(:version => 20130530014206) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "users", ["name"], :name => "index_users_on_name", :unique => true
 
 end
