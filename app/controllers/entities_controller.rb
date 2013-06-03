@@ -11,7 +11,7 @@ class EntitiesController < ApplicationController
       begin
         validates_categories @parsed
         if @entity.add_categories @parsed
-          format.html { redirect_to categories_path, notice: 'You are Awesome for join us' }
+          format.html { redirect_to entity_coupons_path(@entity), notice: 'You are Awesome for join us' }
         else
           render_new_with_errors(format)
         end

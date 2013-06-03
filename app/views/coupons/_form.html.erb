@@ -1,0 +1,13 @@
+<%= form_for [@entity, @coupon] do |form| %>
+    <%= form.label :coupon_name %>
+    <%= form.text_field :coupon_name %>
+    <%= form.label :coupon_msg %>
+    <%= form.text_field :coupon_msg %>
+    <%= form.label :coupon_num %>
+    <%= form.number_field :coupon_num, min: 1%>
+    <div class="img" style="display: none">
+        <%= image_tag class: 'preview' %>
+    </div>
+    <%= form.label :coupon_image %>
+    <%= form.file_field :coupon_image %>
+<% end %>

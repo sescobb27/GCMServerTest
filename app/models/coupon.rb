@@ -13,23 +13,22 @@ class Coupon < ActiveRecord::Base
     # ===========================model validations=============================
     validates_attachment_size :coupon_image, less_than: 2.megabytes
     validates_attachment_content_type :coupon_image, :content_type => %w(image/jpeg image/png)
-
     {
       coupon_msg: 'Which is about your coupon?',
       coupon_name: 'Which is the title of your coupon?',
       coupon_num: 'How many coupons do you want to make?',
     }.each do |attr, msg|
     	validates_presence_of attr, message: "#{msg}"
-      if attr == :coupon_msg
-        validates_length_of attr, within:10..50,
-                too_long: 'The coupon message length must be less than 50',
-                too_short: 'The coupon message length must be greater than 10'
-      else
-        validates_length_of attr, within: 2..20,
-                too_long: 'maximum value size is 20 chars',
-                too_short: 'the value length must be at least 2 chars'
-      end
     end
+      validates_numericality_of :coupon_num, :only_integer => true,
+                                greater_than_or_equal_to: 10,
+                                message: 'Sorry your promotion has to be for more than 10 people'
+      validates_length_of :coupon_msg, within:10..50,
+                          too_long: 'The coupon message length must be less than 50',
+                          too_short: 'The coupon message length must be greater than 10'
+      validates_length_of :coupon_name, within: 2..20,
+                          too_long: 'maximum value size is 20 chars',
+                          too_short: 'the value length must be at least 2 chars'
     # =============================end validations==============================
 
     # =============================model relationship===========================

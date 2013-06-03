@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+<% unless @coupons.empty? %>
+    <section class="coupons">
+    <% @coupons.each do |coupon| %>
+      <div class="coupon">
+        <h2 class="title"><%= coupon.coupon_name %></h2>
+        <p class="description"><%= coupon.coupon_msg %></p>
+        <% if not coupon.coupon_image.url.empty? %>
+            <div class="img">
+              <%= coupon.coupon_image.url(:small) %>
+            </div>
+        <% else %>
+            <!-- default img -->
+        <% end %>
+      </div>
+    <% end %>
+    </section>
+<% else %>
+    <h2 class="no_coupons"> OH!! i can't see any coupon, lets start and make one, be more Awesome </h2>
+<% end %>
+<%= link_to 'Become more Awesome, create a new Coupon', new_entity_coupon_path(@entity) %>

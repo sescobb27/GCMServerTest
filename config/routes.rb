@@ -1,7 +1,7 @@
 GCMServerTest::Application.routes.draw do
 
   get 'smart_out/index'
-  root to: 'store#index', as: 'index'
+  root to: 'smart_out#index', as: 'index'
 
   match 'category_type/:type' => 'types#category_by_type'
   resources :receivers, only: [:create, :update, :destroy] do
@@ -11,7 +11,7 @@ GCMServerTest::Application.routes.draw do
   end
 
   resources :entities do
-    resources :coupons, except: [:index, :destroy]
+    resources :coupons, except: [:destroy]
   end
 
   resources :categories, except: [:show]
