@@ -5,9 +5,9 @@
     <%= form.text_field :coupon_msg %>
     <%= form.label :coupon_num %>
     <%= form.number_field :coupon_num, min: 1%>
-    <div class="img" style="display: none">
-        <%= image_tag class: 'preview' %>
-    </div>
+    <section id="img_container" style="display: none">
+
+    </section>
     <%= form.label :coupon_image %>
-    <%= form.file_field :coupon_image %>
+    <%= form.file_field :coupon_image, id:'img_change' %>
 <% end %>

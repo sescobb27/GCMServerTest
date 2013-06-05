@@ -11,12 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130603082944) do
+ActiveRecord::Schema.define(:version => 20130605025231) do
 
   create_table "categories", :force => true do |t|
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
-    t.string   "category_name",        :limit => 15, :null => false
+    t.string   "category_name",        :limit => 50, :null => false
     t.string   "category_description"
     t.string   "picture_file_name"
     t.string   "picture_content_type"
@@ -27,24 +27,24 @@ ActiveRecord::Schema.define(:version => 20130603082944) do
   add_index "categories", ["category_name"], :name => "index_categories_on_category_name", :unique => true
 
   create_table "coupons", :force => true do |t|
-    t.integer  "coupon_num",                                                :null => false
-    t.string   "coupon_name",               :limit => 20,                   :null => false
-    t.string   "coupon_msg",                :limit => 50,                   :null => false
-    t.datetime "created_at",                                                :null => false
-    t.datetime "updated_at",                                                :null => false
-    t.boolean  "coupon_state",                            :default => true
+    t.integer  "coupon_num",                                                 :null => false
+    t.string   "coupon_name",               :limit => 50,                    :null => false
+    t.string   "coupon_msg",                :limit => 200,                   :null => false
+    t.datetime "created_at",                                                 :null => false
+    t.datetime "updated_at",                                                 :null => false
+    t.boolean  "coupon_state",                             :default => true
     t.string   "coupon_image_file_name"
     t.string   "coupon_image_content_type"
     t.integer  "coupon_image_file_size"
     t.datetime "coupon_image_updated_at"
-    t.integer  "entity_id",                                                 :null => false
+    t.integer  "entity_id",                                                  :null => false
   end
 
   add_index "coupons", ["entity_id"], :name => "index_coupons_on_entity_id"
 
   create_table "entities", :force => true do |t|
-    t.string   "entity_name",             :limit => 20, :null => false
-    t.string   "entity_email",            :limit => 20, :null => false
+    t.string   "entity_name",             :limit => 50, :null => false
+    t.string   "entity_email",            :limit => 70, :null => false
     t.string   "entity_telephone_number", :limit => 10, :null => false
     t.datetime "created_at",                            :null => false
     t.datetime "updated_at",                            :null => false
@@ -139,11 +139,11 @@ ActiveRecord::Schema.define(:version => 20130603082944) do
   add_index "user_entities", ["user_id"], :name => "index_user_entities_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
+    t.string   "name",       :limit => 80
+    t.string   "email",      :limit => 70
     t.date     "birthday"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
   end
 
   add_index "users", ["name"], :name => "index_users_on_name", :unique => true
