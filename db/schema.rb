@@ -24,8 +24,6 @@ ActiveRecord::Schema.define(:version => 20130605025231) do
     t.datetime "picture_updated_at"
   end
 
-  add_index "categories", ["category_name"], :name => "index_categories_on_category_name", :unique => true
-
   create_table "coupons", :force => true do |t|
     t.integer  "coupon_num",                                                 :null => false
     t.string   "coupon_name",               :limit => 50,                    :null => false
@@ -39,8 +37,6 @@ ActiveRecord::Schema.define(:version => 20130605025231) do
     t.datetime "coupon_image_updated_at"
     t.integer  "entity_id",                                                  :null => false
   end
-
-  add_index "coupons", ["entity_id"], :name => "index_coupons_on_entity_id"
 
   create_table "entities", :force => true do |t|
     t.string   "entity_name",             :limit => 50, :null => false
@@ -139,13 +135,14 @@ ActiveRecord::Schema.define(:version => 20130605025231) do
   add_index "user_entities", ["user_id"], :name => "index_user_entities_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "name",       :limit => 80
-    t.string   "email",      :limit => 70
-    t.date     "birthday"
+    t.string   "name",       :limit => 80, :null => false
+    t.string   "email",      :limit => 70, :null => false
+    t.date     "birthday",                 :null => false
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
   end
 
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["name"], :name => "index_users_on_name", :unique => true
 
 end

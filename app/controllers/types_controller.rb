@@ -1,7 +1,9 @@
 class TypesController < ApplicationController
 
   def index
-    @types = Type::VALID_TYPES.values
+    @types = Type.only_names.map do |type|
+      type.type_name
+    end
     respond_to do |format|
       format.html { render partial: 'show', layout: false, locals: { :@types => @types } }
       format.js { }
