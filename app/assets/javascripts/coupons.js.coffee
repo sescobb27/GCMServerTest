@@ -5,10 +5,16 @@ $(document).ready ->
   read = (file) ->
     reader = new FileReader
     reader.onload = ((theFile) ->
-      (e) ->
-        image_span = document.createElement('span')
-        image_span.innerHTML = ['<img class=\"img\" src=\"', e.target.result,'\" title=\"', escape(theFile.name), '\"/>'].join ''
-        $('#img_container').append(image_span)
+      (event) ->
+        preview = $('#img_container').find('.preview')
+        if preview.length == 0
+            $('#img_container').html "<span class='preview'></span>"
+            preview = $('#img_container').find('.preview')
+        preview.html ['<img class=\"img\" src=\"', \
+                                event.target.result,'\" title=\"', \
+                                escape(theFile.name), '\"/>'].join ''
+
+#        $('#img_container').append(preview)
     )(file)
     reader.readAsDataURL file
 
