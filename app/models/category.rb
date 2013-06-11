@@ -4,8 +4,8 @@ class Category < ActiveRecord::Base
     attr_accessible :category_name, :category_description, :picture
     has_attached_file :picture,
                       :styles => { :medium => '400x400>' },
-                      :url  => '/assets/users/:id/:style/:basename.:extension',
-                      :path => ':rails_root/public/assets/users/:id/:style/:basename.:extension',
+                      :url  => '/assets/categories/:id/:basename.:extension',
+                      :path => ':rails_root/public/assets/categories/:id/:basename.:extension',
                       :default_url => ''
     # ===========================end attributes=================================
 

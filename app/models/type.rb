@@ -4,8 +4,8 @@ class Type < ActiveRecord::Base
   attr_accessible :type_name, :type_description
   has_attached_file :picture,
                     :styles => { :medium => '400x400>' },
-                    :url  => '/assets/users/:id/:style/:basename.:extension',
-                    :path => ':rails_root/public/assets/users/:id/:style/:basename.:extension',
+                    :url  => '/assets/types/:id/:basename.:extension',
+                    :path => ':rails_root/public/assets/types/:id/:basename.:extension',
                     :default_url => ''
   # ===========================end attributes=================================
 

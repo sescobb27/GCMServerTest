@@ -7,7 +7,7 @@
         <p class="description"><%= coupon.coupon_msg %></p>
         <% if not coupon.coupon_image.url.empty? %>
             <div class="img">
-              <%= coupon.coupon_image.url(:small) %>
+              <%= image_tag coupon.coupon_image.url(:small) %>
             </div>
         <% else %>
             <!-- default img -->

@@ -17,9 +17,10 @@ class CouponsController < ApplicationController
 		@coupon = @entity.coupons.new params[:coupon]
 		respond_to do |format|
 			if @coupon.save
-				format.html {  }
+				format.html { redirect_to entity_coupons_path @entity }
 				#format.json { render nothing: true }
-			else
+      else
+        format.html { render :new, notice: @coupon.errors }
 				#format.json { render json: @coupon.errors, status: :unprocessable_entity }
 			end
 		end
