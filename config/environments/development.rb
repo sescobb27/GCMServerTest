@@ -36,4 +36,45 @@ GCMServerTest::Application.configure do
   config.assets.debug = true
 
   Paperclip.options[:command_path] = "/usr/local/bin/"
+
+
+
+=begin
+  Bullet.enable: enable Bullet gem, otherwise do nothing
+  Bullet.alert: pop up a JavaScript alert in the browser
+  Bullet.bullet_logger: log to the Bullet log file (Rails.root/log/bullet.log)
+  Bullet.rails_logger: add warnings directly to the Rails log
+  Bullet.airbrake: add notifications to airbrake
+  Bullet.console: log warnings to your browser's console.log (Safari/Webkit browsers or Firefox w/Firebug installed)
+  Bullet.growl: pop up Growl warnings if your system has Growl installed. Requires a little bit of configuration
+  Bullet.xmpp: send XMPP/Jabber notifications to the receiver indicated. Note that the code will currently not handle
+    the adding of contacts, so you will need to make both accounts indicated know each other manually before you will
+    receive any notifications. If you restart the development server frequently, the 'coming online' sound for the
+    bullet account may start to annoy - in this case set :show_online_status to false; you will still get notifications,
+    but the bullet account won't announce it's online status anymore.
+
+  Bullet also allows you to disable n_plus_one_query, unused_eager_loading and counter_cache detectors respectively
+  Bullet.n_plus_one_query_enable = false
+  Bullet.unused_eager_loading_enable = false
+  Bullet.counter_cache_enable = false
+
+  Whitelist
+  Sometimes bullet may notify n plus one query, unused eager loading or counter cache you don't care about or
+  they occur in the third party gems that you can't fix, you can add whitelist to bullet
+
+  Bullet.add_whitelist :type => :n_plus_one_query, :class_name => "Post", :association => :comments
+  Bullet.add_whitelist :type => :unused_eager_loading, :class_name => "Post", :association => :comments
+  Bullet.add_whitelist :type => :counter_cache, :class_name => "Country", :association => :cities
+
+  Important
+  If you find bullet does not work for you, please disable your browser's cache.
+=end
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    Bullet.rails_logger = true
+  end
 end

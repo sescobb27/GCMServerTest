@@ -13,8 +13,6 @@ $(document).ready ->
         preview.html ['<img class=\"img\" src=\"', \
                                 event.target.result,'\" title=\"', \
                                 escape(theFile.name), '\"/>'].join ''
-
-#        $('#img_container').append(preview)
     )(file)
     reader.readAsDataURL file
 

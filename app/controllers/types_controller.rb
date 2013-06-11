@@ -1,12 +1,12 @@
 class TypesController < ApplicationController
 
+  respond_to :html
   def index
     @types = Type.only_names.map do |type|
       type.type_name
     end
-    respond_to do |format|
-      format.html { render partial: 'show', layout: false, locals: { :@types => @types } }
-      format.js { }
+    respond_with(@types) do |format|
+      format.html { render partial: 'show', layout: false }
     end
   end
 
@@ -16,12 +16,12 @@ class TypesController < ApplicationController
 
   def create
     @type = Type.new params[:type]
-    respond_to do |format|
-      if @type.save
-        format.html { redirect_to types_path, notice: 'New type was created' }
-      else
-        format.html { render action: 'new' }
+    if @type.save
+      respond_with do |format|
+        format.html{ redirect_to types_path, notice: 'New type was created' }
       end
+    else
+      respond_with(@type)
     end
   end
 
@@ -29,9 +29,9 @@ class TypesController < ApplicationController
     @categories = Type.where('type_name = ?',params[:type])
                       .select('category_name, category_description')
                       .joins :categories
-    respond_to do |format|
+    respond_with(@categories) do |format|
       format.html { render partial: 'categories/categories',
-                           locals: { :@categories => @categories, type: params[:type] },
+                           locals: { type: params[:type] },
                            layout: false
       }
     end

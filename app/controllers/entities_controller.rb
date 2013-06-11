@@ -1,4 +1,5 @@
 class EntitiesController < ApplicationController
+  respond_to :html
 
   def new
     @entity = Entity.new
@@ -7,18 +8,18 @@ class EntitiesController < ApplicationController
   def create
     @parsed = JSON.parse params[:entity].delete :categories
 		@entity = Entity.new params[:entity]
-    respond_to do |format|
-      begin
-        validates_categories @parsed
-        if @entity.add_categories @parsed
-          format.html { redirect_to entity_coupons_path(@entity), notice: 'You are Awesome for join us' }
-        else
-          render_new_with_errors(format)
+    begin
+      validates_categories @parsed
+      if @entity.add_categories @parsed
+        respond_with do |format|
+          format.html{ redirect_to entity_coupons_path(@entity), notice: 'You are Awesome for join us' }
         end
-      rescue Exception => e
-        @entity.errors << e.message
-        render_new_with_errors(format)
+      else
+        render_new_with_errors
       end
+    rescue Exception => e
+      @entity.errors << e.message
+      render_new_with_errors
     end
   end
 
@@ -27,8 +28,8 @@ class EntitiesController < ApplicationController
     raise 'You must select at least one category for your company' if categories.empty?
   end
 
-  def render_new_with_errors(format)
-    format.html { render :new, notice: @entity.errors }
+  def render_new_with_errors
+    respond_with(@entity, notice: @entity.errors)
   end
 
 end

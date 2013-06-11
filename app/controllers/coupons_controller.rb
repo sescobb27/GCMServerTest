@@ -3,6 +3,7 @@ class CouponsController < ApplicationController
 	#skip_before_filter :verify_authenticity_token,
 	#if: Proc.new { |_user| _user.request.format == 'application/json' }
   before_filter :load_entity
+  respond_to :html
   def index
     @coupons = @entity.coupons
   end
@@ -15,15 +16,13 @@ class CouponsController < ApplicationController
  	# POST /coupons.json
 	def create
 		@coupon = @entity.coupons.new params[:coupon]
-		respond_to do |format|
-			if @coupon.save
-				format.html { redirect_to entity_coupons_path @entity, notice: 'Your new coupon was created successfully' }
-				#format.json { render nothing: true }
-      else
-        format.html { render :new, notice: @coupon.errors }
-				#format.json { render json: @coupon.errors, status: :unprocessable_entity }
-			end
-		end
+    if @coupon.save
+      respond_with do |format|
+        format.html{ redirect_to entity_coupons_path(@entity), notice: 'Your new coupon was created successfully' }
+      end
+    else
+      respond_with(@coupon, notice: @coupon.errors)
+    end
 	end
 
 	def show
