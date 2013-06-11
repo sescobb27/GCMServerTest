@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+<h1> Your Coupons </h1>
 <% unless @coupons.empty? %>
     <section class="coupons">
     <% @coupons.each do |coupon| %>
@@ -12,6 +13,9 @@
         <% else %>
             <!-- default img -->
         <% end %>
+        <div class="available">
+          <%= pluralize(coupon.coupon_num, 'Coupon') %> Available
+        </div>
       </div>
     <% end %>
     </section>

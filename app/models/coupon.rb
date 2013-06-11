@@ -4,7 +4,7 @@ class Coupon < ActiveRecord::Base
   	attr_accessible :entity_id, :coupon_msg, :coupon_name, :coupon_num,
   					:coupon_image
 	  has_attached_file :coupon_image,
-  		:styles => { :small => '100x100>' },
+  		:styles => { :small => '300x300>' },
   		:url  => '/assets/users/:id/:style/:basename.:extension',
       :path => ':rails_root/public/assets/users/:id/:style/:basename.:extension',
       :default_url => ''
