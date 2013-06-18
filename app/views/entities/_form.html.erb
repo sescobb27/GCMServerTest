@@ -1,15 +1,9 @@
 <h1>Join us</h1>
+<% errors = @entity.errors %>
 <%= form_for @entity do |form| %>
-    <% if @entity.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@entity.errors.count, 'error') %> prohibited this line_item from being saved:</h2>
-
-          <ul>
-            <% @entity.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
+    <%= error_div errors do %>
+        <%= content_tag :h2, "#{pluralize(errors.count, 'error')} prohibited this user from being saved:" %>
+        <%= error_list errors %>
     <% end %>
   <%= form.label :entity_name, 'Company Name' %>
   <%= form.text_field :entity_name %>

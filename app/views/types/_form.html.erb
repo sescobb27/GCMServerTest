@@ -1,5 +1,9 @@
+<% errors = @type.errors %>
 <%= form_for @type do |form| %>
-
+    <%= error_div errors do %>
+        <%= content_tag :h2, "#{pluralize(errors.count, 'error')} prohibited this user from being saved:" %>
+        <%= error_list errors %>
+    <% end %>
     <%= form.label :type_name %>
     <%= form.text_field :type_name %>
 

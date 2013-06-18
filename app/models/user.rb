@@ -6,14 +6,14 @@ class User < ActiveRecord::Base
   # ===========================model validations============================
   validates_uniqueness_of :email
   validates_length_of :name, within: 10..50,
-                      too_long: 'Names value size must be less than 50',
-                      too_short: 'Names value size must be greater than 10'
+                      too_long: 'value size must be less than 50',
+                      too_short: 'value size must be greater than 10'
   validates_format_of :email,
                       with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i,
-                      message: 'Invalid email format'
+                      message: 'Invalid format'
   { birthday: 'You must have at least 10 years old', 
-    email: 'Invalid email',
-    name: 'Invalid name'
+    email: 'can\'t be blank',
+    name: 'can\'t be blank'
   }.each do |attr,msg|
     validates_presence_of attr, msg: "#{msg}"
   end

@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     if @user.save
       respond_with(@user, location: users_path)
     else
-      respond_with(@user, notice: @user.errors)
+      respond_with(@user)
     end
   end
 

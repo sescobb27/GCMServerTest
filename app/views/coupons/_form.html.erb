@@ -1,14 +1,8 @@
+<% errors = @coupon.errors %>
 <%= form_for [@entity, @coupon] do |form| %>
-    <% if @coupon.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@coupon.errors.count, 'error') %> prohibited this line_item from being saved:</h2>
-
-          <ul>
-            <% @coupon.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
+    <%= error_div errors do %>
+        <%= content_tag :h2, "#{pluralize(errors.count, 'error')} prohibited this user from being saved:" %>
+        <%= error_list errors %>
     <% end %>
     <%= form.label :coupon_name %>
     <%= form.text_field :coupon_name %>
