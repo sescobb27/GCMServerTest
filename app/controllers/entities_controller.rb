@@ -1,6 +1,6 @@
 class EntitiesController < ApplicationController
   respond_to :html
-
+  respond_to :json, only: :index
   def new
     @entity = Entity.new
   end
@@ -21,6 +21,11 @@ class EntitiesController < ApplicationController
       @entity.errors << e.message
       render_new_with_errors
     end
+  end
+
+  def index
+    @entities = Entity.select(:entity_name).all
+    respond_with @entities
   end
 
   private
