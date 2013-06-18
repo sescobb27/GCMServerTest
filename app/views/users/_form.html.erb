@@ -1,0 +1,26 @@
+<%= form_for @user do |f| %>
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count, 'error') %> prohibited this user from being saved:</h2>
+
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+  <%= f.label :name, "Name" %> 
+  <%= f.text_field :name %>
+  <%= f.label :email, "Email" %>
+  <%= f.email_field :email %>
+  <%= f.label :birthday, "Birthday" %>
+  <%= f.date_select :birthday,
+                  end_year: today.year - 10,
+                  start_year: 1950,
+                  default: 10.years.ago,
+                  include_blank: false %>
+  <%= f.label :regId, "Gcm_Device_Id" %>
+  <%= f.text_field :regId, value: "abcde12345" %>
+  <%= f.submit "New user" %>
+<% end %>

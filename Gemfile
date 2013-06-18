@@ -6,6 +6,7 @@ gem 'mysql2'
 gem 'gcm_on_rails'
 gem "paperclip", "~> 3.4.1"
 gem 'whenever', :require => false
+gem 'randumb'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

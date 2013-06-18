@@ -4,9 +4,10 @@ GCMServerTest::Application.routes.draw do
   root to: 'smart_out#index', as: 'index'
 
   match 'category_type/:type' => 'types#category_by_type'
-  resources :receivers, only: [:create, :update, :destroy] do
+  resources :users do
     member do
       put 'add_entity'
+      get 'recommended_coupons'
     end
   end
 

@@ -99,6 +99,10 @@ GEM
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
     rake (10.0.4)
+    randumb (0.3.1)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      rake
     rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.4)
@@ -150,6 +154,7 @@ DEPENDENCIES
   paperclip (~> 3.4.1)
   railroady
   rails (= 3.2.12)
+  randumb
   rspec
   sass-rails (~> 3.2.3)
   therubyracer

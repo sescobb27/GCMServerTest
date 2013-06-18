@@ -1,12 +1,12 @@
 <h1>
-  <%= type ? type : '' %> Categories
+  <%= _type(type) %> Categories
 </h1>
 <section class="categories">
   <% @categories.each do |category| %>
       <div class="category"
            title="<%= category.category_description %>"
            data-category="<%= category.category_name %>"
-           <% if type %>
+           <% unless _type(type).empty? %>
              data-category-type="<%= type %>"
            <% end %>
       >
