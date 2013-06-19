@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   # ===========================Attributes=====================================
-  attr_accessible :birthday, :email, :name, :gcm_device_id
+  attr_accessible :birthday, :email, :name, :gcm_device_id, :entities
   # ===========================end attributes=================================
 
   # ===========================model validations============================
@@ -27,25 +27,14 @@ class User < ActiveRecord::Base
   belongs_to :device, class_name: 'Gcm::Device',foreign_key: 'gcm_device_id'
   # =============================end relationship=============================
 
-  def self.add_to_database(req_params, device)
+  def self.add_to_database(req_params, device, arr_entities)
+    entities = Entity.where entity_name: arr_entities
     birth = Date.get_date_from_params req_params
-    user = User.new name: req_params[:name],
+    User.new name: req_params[:name],
                     email: req_params[:email],
                     birthday: birth,
-                    gcm_device_id: device.id
-
-    # en los param viene un atributo likes que son unos strings concatenados con ','
-    # que hacen referencia a las entidades que le gustan al usuario
-    likes = to_str_arr req_params['likes'].to_s
-    # asignar entidades (restaurantes, bares o discotecas) al usuario
-    user.add_entities likes
-    user
-  end
-
-  def self.to_str_arr(str)
-    str.split(',').each do |like|
-      like.strip!
-    end
+                    gcm_device_id: device.id,
+                    entities: entities
   end
 
   def add_entities(entities_arr)

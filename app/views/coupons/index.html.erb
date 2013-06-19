@@ -1,5 +1,9 @@
-<p id="notice"><%= notice %></p>
-<h1> Your Coupons </h1>
+<% if @entity %>
+  <p id="notice"><%= notice %></p>
+  <h1> <%= @entity.entity_name %> Coupons </h1>
+<% else %>
+  <h1> Available Coupons for you </h1>
+<% end %>
 <% unless @coupons.empty? %>
     <section class="coupons">
     <% @coupons.each do |coupon| %>
@@ -20,6 +24,8 @@
     <% end %>
     </section>
 <% else %>
+  <% if @entity %>
     <h2 class="no_coupons"> OH!! i can't see any coupon, lets start and make one, be more Awesome </h2>
+  <% end %>
 <% end %>
-<%= link_to 'Become more Awesome, create a new Coupon', new_entity_coupon_path(@entity) %>
+<%= link_to 'Become more Awesome, create a new Coupon', new_entity_coupon_path(@entity) if @entity %>

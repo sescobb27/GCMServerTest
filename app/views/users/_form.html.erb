@@ -4,18 +4,19 @@
     <%= content_tag :h2, "#{pluralize(errors.count, 'error')} prohibited this user from being saved:" %>
     <%= error_list errors %>
   <% end %>
-  <%= f.label :name, "Name" %> 
+  <%= f.label :name, 'Name' %>
   <%= f.text_field :name %>
-  <%= f.label :email, "Email" %>
+  <%= f.label :email, 'Email' %>
   <%= f.email_field :email %>
-  <%= f.label :birthday, "Birthday" %>
+  <%= f.label :birthday, 'Birthday' %>
   <%= f.date_select :birthday,
                   end_year: today.year - 10,
                   start_year: 1950,
                   default: 10.years.ago,
                   include_blank: false %>
-  <%= f.label :regId, "Gcm_Device_Id" %>
-  <%= f.text_field :regId, value: "abcde12345" %>
-  <%= f.submit "New user" %>
+  <%= f.label :regId, 'Gcm_Device_Id' %>
+  <%= f.text_field :regId, value: 'abcde12345' %>
+  <%= f.hidden_field :entities, id: 'user_entities' %>
+  <%= f.submit 'New user', id: 'new_user' %>
 <% end %>
 <%= link_to 'Companies', entities_url, id: 'companies' %>

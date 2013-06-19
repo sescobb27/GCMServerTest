@@ -5,6 +5,7 @@ GCMServerTest::Application.routes.draw do
 
   match 'category_type/:type' => 'types#category_by_type'
   resources :users do
+    resources :coupons, only: [:index]
     member do
       put 'add_entity'
       get 'recommended_coupons'

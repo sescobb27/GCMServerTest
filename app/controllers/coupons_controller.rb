@@ -2,10 +2,20 @@ class CouponsController < ApplicationController
 	# when the request is POST and it was send as JSON skip athenticity token validation
 	#skip_before_filter :verify_authenticity_token,
 	#if: Proc.new { |_user| _user.request.format == 'application/json' }
-  before_filter :load_entity
+  before_filter :load_entity, except: :index
   respond_to :html
+  respond_to :json, only: :index
   def index
-    @coupons = @entity.coupons
+    if user_id = params[:user_id]
+      #Entity.joins(:users).where(users: { id: user_id })
+      @coupons = Coupon.joins(entity: :users).where(coupon_state: true, users: { id: user_id } ).random(5)
+      respond_with @coupons do |format|
+        format.html { render layout: false}
+      end
+    else
+      load_entity
+      @coupons = @entity.coupons
+    end
   end
 
   def new
@@ -26,6 +36,7 @@ class CouponsController < ApplicationController
 	end
 
 	def show
+=begin
 		devices = Gcm::Device.find(5)
 		notification = Gcm::Notification.new
 		notification.device = devices
@@ -36,11 +47,13 @@ class CouponsController < ApplicationController
 		notification.save
 		Gcm::Notification.send_notifications
 		render nothing: true
+=end
   end
   
   private
   def load_entity
     #@entity = Entity.joins(:coupons).find(params[:entity_id])
-    @entity = Entity.find(params[:entity_id])
+    @entity = Entity.find params[:entity_id]
   end
+
 end

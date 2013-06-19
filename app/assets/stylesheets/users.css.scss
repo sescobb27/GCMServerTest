@@ -1,3 +1,31 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#entities {
+  margin:0px;
+  padding:0px;
+  width:50%;
+  box-shadow: 10px 10px 5px #674054;
+  border:1px solid #999999;
+
+  -moz-border-radius:13px;
+  -webkit-border-radius:13px;
+  border-bottom-radius:13px;
+}
+
+#entities .entity td{
+  vertical-align:middle;
+
+  border:1px solid #000000;
+  border-width:0px 1px 1px 0px;
+  text-align:center;
+  padding:15px;
+  font-size:20px;
+  font-family:Arial;
+  font-weight:normal;
+  color:#000000;
+}
+
+.selected {
+  background-color: yellow;
+}

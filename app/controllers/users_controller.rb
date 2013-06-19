@@ -2,14 +2,15 @@ class UsersController < ApplicationController
   # when the request is POST and it was send as JSON skip athenticity token validation
   skip_before_filter :verify_authenticity_token,
                      if: Proc.new { |_user| _user.request.format == 'application/json' }
+  before_filter :parse_json, only:  [:create, :update]
   respond_to :html, :json
   def add_entity
+=begin
     @device = verify_existence
     if @device
       @user = User.where(gcm_device_id: @device.id).first
-      @likes = User.to_str_arr params[:user][:likes].to_s
-      @user.add_entities @likes
     end
+=end
   end
 
   def new
@@ -18,9 +19,9 @@ class UsersController < ApplicationController
 
   def create
     @device = Gcm::Device.where(registration_id: params[:user][:regId]).first_or_create
-    @user = User.add_to_database params[:user], @device
+    @user = User.add_to_database params[:user], @device, @parsed_entities
     if @user.save
-      respond_with(@user, location: users_path)
+      respond_with(@user, location: user_path)
     else
       respond_with(@user)
     end
@@ -52,7 +53,7 @@ class UsersController < ApplicationController
   end
 
   def show
-
+    @user = User.find params[:id]
   end
 
   def recommended_coupons
@@ -63,5 +64,9 @@ class UsersController < ApplicationController
   private
   def verify_existence
     Gcm::Device.where(registration_id: params[:user][:regId]).first
+  end
+
+  def parse_json
+    @parsed_entities = JSON.parse params[:user].delete :entities
   end
 end
