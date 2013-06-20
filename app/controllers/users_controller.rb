@@ -21,7 +21,9 @@ class UsersController < ApplicationController
     @device = Gcm::Device.where(registration_id: params[:user][:regId]).first_or_create
     @user = User.add_to_database params[:user], @device, @parsed_entities
     if @user.save
-      respond_with(@user, location: user_path)
+      respond_with do |format|
+          format.html{ redirect_to user_path(@user) }
+      end
     else
       respond_with(@user)
     end
