@@ -63,6 +63,18 @@ class UsersController < ApplicationController
 
   end
 
+  def recommended_by_place
+
+  end
+
+  def recommended_by_likes
+
+  end
+
+  def recommended_by_random
+
+  end
+
   private
   def verify_existence
     Gcm::Device.where(registration_id: params[:user][:regId]).first

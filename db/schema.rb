@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130620075639) do
+ActiveRecord::Schema.define(:version => 20130705061820) do
 
   create_table "categories", :force => true do |t|
     t.datetime "created_at",                         :null => false
@@ -59,6 +59,16 @@ ActiveRecord::Schema.define(:version => 20130620075639) do
   add_index "entity_categories", ["category_id"], :name => "index_entity_categories_on_category_id"
   add_index "entity_categories", ["entity_id"], :name => "index_entity_categories_on_entity_id"
 
+  create_table "entity_locations", :force => true do |t|
+    t.integer  "entity_id",   :null => false
+    t.integer  "location_id", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "entity_locations", ["entity_id"], :name => "index_entity_locations_on_entity_id"
+  add_index "entity_locations", ["location_id"], :name => "index_entity_locations_on_location_id"
+
   create_table "gcm_devices", :force => true do |t|
     t.string   "registration_id",    :null => false
     t.datetime "last_registered_at"
@@ -80,6 +90,14 @@ ActiveRecord::Schema.define(:version => 20130620075639) do
   end
 
   add_index "gcm_notifications", ["device_id"], :name => "index_gcm_notifications_on_device_id"
+
+  create_table "locations", :force => true do |t|
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "locations", ["name"], :name => "index_locations_on_name", :unique => true
 
   create_table "type_categories", :force => true do |t|
     t.integer  "type_id",     :null => false

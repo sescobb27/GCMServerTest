@@ -9,6 +9,9 @@ GCMServerTest::Application.routes.draw do
     member do
       put 'add_entity'
       get 'recommended_coupons'
+      get 'recommended_by_place'
+      get 'recommended_by_likes'
+      get 'recommended_by_random'
     end
   end
 
