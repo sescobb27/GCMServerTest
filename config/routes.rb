@@ -1,9 +1,11 @@
 GCMServerTest::Application.routes.draw do
 
   get 'smart_out/index'
+
   root to: 'smart_out#index', as: 'index'
 
   match 'category_type/:type' => 'types#category_by_type'
+
   resources :users do
     resources :coupons, only: [:index]
     member do
@@ -20,12 +22,14 @@ GCMServerTest::Application.routes.draw do
   end
 
   resources :categories, except: [:show]
+
   resources :types, except: [:show] do
     member do
       get 'category_by_type'
     end
   end
 
+  resources :locations, only: [:index, :new, :create]
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
