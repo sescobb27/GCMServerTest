@@ -31,6 +31,8 @@ class Entity < ActiveRecord::Base
   has_many :categories, through: :entity_categories
   has_many :user_entities
   has_many :users, through: :user_entities
+  has_many :entity_locations
+  has_many :locations, through: :entity_locations
 	# =============================end relationship=============================
 
   def add_categories(arr_categories)
