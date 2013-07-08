@@ -1,8 +1,8 @@
 class AddIndexToCategory < ActiveRecord::Migration
   def change
-    #add_index :categories, :category_name, unique: true
-    #add_index :coupons, :entity_id, unique: false
-    #add_index :entity_categories, :entity_id, unique: false
+    add_index :categories, :category_name, unique: true
+    add_index :coupons, :entity_id, unique: false
+    add_index :entity_categories, :entity_id, unique: false
     add_index :entity_categories, :category_id, unique: false
     add_index :entities, :entity_email, unique: true
     add_index :receivers, :user_id, unique: true

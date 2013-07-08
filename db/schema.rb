@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130705061820) do
+ActiveRecord::Schema.define(:version => 20130708185500) do
 
   create_table "categories", :force => true do |t|
     t.datetime "created_at",                         :null => false
@@ -150,8 +150,10 @@ ActiveRecord::Schema.define(:version => 20130705061820) do
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
     t.integer  "gcm_device_id",               :null => false
+    t.string   "secure_id",     :limit => 8,  :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["secure_id"], :name => "index_users_on_secure_id", :unique => true
 
 end
