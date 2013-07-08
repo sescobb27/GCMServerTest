@@ -43,3 +43,11 @@ types.each do |type|
       type.add_category CATEGORIES[:disco_bar]
   end
 end
+
+# default locations
+LOCATIONS = %w( laureles envigado poblado belen los_colores estadio aguacatala lleras
+                oviedo el_tesoro guadalcanal sabaneta itagui caldas la_estrella el_centro las_vegas bulerias
+                la_33 la_nutivara unidad_deportiva_belen unicentro san_lucas )
+LOCATIONS.each do |location|
+  Location.create name: location.gsub(/_/, ' ').capitalize
+end

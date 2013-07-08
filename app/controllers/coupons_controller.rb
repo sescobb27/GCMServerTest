@@ -2,7 +2,7 @@ class CouponsController < ApplicationController
 	# when the request is POST and it was send as JSON skip athenticity token validation
 	#skip_before_filter :verify_authenticity_token,
 	#if: Proc.new { |_user| _user.request.format == 'application/json' }
-  before_filter :load_entity, except: :index
+  before_filter :load_entity, except: [:index, :by_place, :by_likes, :by_random]
   before_filter :auth_user, only: [:index, :by_place, :by_likes, :by_random]
   respond_to :html
   respond_to :json, only: :index
@@ -22,7 +22,7 @@ class CouponsController < ApplicationController
 
 
   def by_place
-
+    @coupons = Coupon.joins(entity: :location).where(coupon_state: true, location: { name: params[:location] })
   end
 
   def by_likes
@@ -66,9 +66,9 @@ class CouponsController < ApplicationController
   end
   
   private
-  def load_entity
-    #@entity = Entity.joins(:coupons).find(params[:entity_id])
-    @entity = Entity.find params[:entity_id]
-  end
+    def load_entity
+      #@entity = Entity.joins(:coupons).find(params[:entity_id])
+      @entity = Entity.find params[:entity_id]
+    end
 
 end
