@@ -6,10 +6,18 @@ class CouponsController < ApplicationController
   before_filter :auth_user, only: [:index, :by_place, :by_likes, :by_random]
   respond_to :html
   respond_to :json, only: :index
+
+  # find coupons directly from user entities likes which coupons are available
   def index
+    =begin
+      coupons.entity_id == entity.id and
+      entity.id == user_entity.entity_id and
+      user_entity.user_id == user.id and
+      coupons.coupon_state == true
+      5 random entities
+    =end
     user_id = params[:user_id]
     if user_id
-      #Entity.joins(:users).where(users: { id: user_id })
       @coupons = Coupon.joins(entity: :users).where(coupon_state: true, users: { id: user_id } ).random(5)
       respond_with @coupons do |format|
         format.html { render layout: false}
@@ -20,15 +28,25 @@ class CouponsController < ApplicationController
     end
   end
 
-
+  # find coupons from entities in one or many locations which coupons are available
   def by_place
-    @coupons = Coupon.joins(entity: :location).where(coupon_state: true, location: { name: params[:location] })
+  =begin
+      coupons.entity_id == entity.id and
+      entity.id == entity_location.entity_id and
+      entity_location.location_id == location.id and
+      location.name == location_from_params and
+      coupon.coupon_state = true
+      5 random entities
+  =end
+    @coupons = Coupon.joins(entity: :locations).where(coupon_state: true, locations: { name: params[:location] }).random(5)
   end
 
+  # find coupons from users likes (categories) which coupons are available
   def by_likes
 
   end
 
+  # find coupons from entities which coupons are available
   def by_random
 
   end
