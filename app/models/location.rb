@@ -6,6 +6,6 @@ class Location < ActiveRecord::Base
 
   # =============================model relationship===========================
   has_many :entity_locations
-  has_many :locations, through: :entity_locations
+  has_many :entities, through: :entity_locations
   # =============================end relationship=============================
 end
