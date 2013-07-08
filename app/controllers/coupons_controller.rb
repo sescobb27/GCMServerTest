@@ -18,6 +18,19 @@ class CouponsController < ApplicationController
     end
   end
 
+
+  def by_place
+
+  end
+
+  def by_likes
+
+  end
+
+  def by_random
+
+  end
+
   def new
     @coupon = @entity.coupons.new
   end

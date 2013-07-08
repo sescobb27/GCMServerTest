@@ -5,15 +5,14 @@ GCMServerTest::Application.routes.draw do
   root to: 'smart_out#index', as: 'index'
 
   match 'category_type/:type' => 'types#category_by_type'
+  get 'users/:user_id/coupons/by_place', to: 'coupons#by_place'
+  get 'users/:user_id/coupons/by_likes', to: 'coupons#by_likes'
+  get 'users/:user_id/coupons/by_random', to: 'coupons#by_random'
 
   resources :users do
     resources :coupons, only: [:index]
     member do
       put 'add_entity'
-      get 'recommended_coupons'
-      get 'recommended_by_place'
-      get 'recommended_by_likes'
-      get 'recommended_by_random'
     end
   end
 
