@@ -42,4 +42,12 @@ class Entity < ActiveRecord::Base
     end
     self.save
   end
+
+  def add_location(arr_locations)
+    loc = Location.where name: arr_locations
+    loc.each do |location|
+      self.locations << location
+    end
+    self.save
+  end
 end
