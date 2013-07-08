@@ -3,10 +3,12 @@ class CouponsController < ApplicationController
 	#skip_before_filter :verify_authenticity_token,
 	#if: Proc.new { |_user| _user.request.format == 'application/json' }
   before_filter :load_entity, except: :index
+  before_filter :auth_user, only: [:index, :by_place, :by_likes, :by_random]
   respond_to :html
   respond_to :json, only: :index
   def index
-    if user_id = params[:user_id]
+    user_id = params[:user_id]
+    if user_id
       #Entity.joins(:users).where(users: { id: user_id })
       @coupons = Coupon.joins(entity: :users).where(coupon_state: true, users: { id: user_id } ).random(5)
       respond_with @coupons do |format|
