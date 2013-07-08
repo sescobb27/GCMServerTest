@@ -9,13 +9,13 @@ class CouponsController < ApplicationController
 
   # find coupons directly from user entities likes which coupons are available
   def index
-    =begin
-      coupons.entity_id == entity.id and
-      entity.id == user_entity.entity_id and
-      user_entity.user_id == user.id and
-      coupons.coupon_state == true
-      5 random entities
-    =end
+=begin
+  coupons.entity_id == entity.id and
+  entity.id == user_entity.entity_id and
+  user_entity.user_id == user.id and
+  coupons.coupon_state == true
+  5 random entities
+=end
     user_id = params[:user_id]
     if user_id
       @coupons = Coupon.joins(entity: :users).where(coupon_state: true, users: { id: user_id } ).random(5)
@@ -30,14 +30,14 @@ class CouponsController < ApplicationController
 
   # find coupons from entities in one or many locations which coupons are available
   def by_place
-  =begin
-      coupons.entity_id == entity.id and
-      entity.id == entity_location.entity_id and
-      entity_location.location_id == location.id and
-      location.name == location_from_params and
-      coupon.coupon_state = true
-      5 random entities
-  =end
+=begin
+    coupons.entity_id == entity.id and
+    entity.id == entity_location.entity_id and
+    entity_location.location_id == location.id and
+    location.name == location_from_params and
+    coupon.coupon_state = true
+    5 random entities
+=end
     @coupons = Coupon.joins(entity: :locations).where(coupon_state: true, locations: { name: params[:location] }).random(5)
   end
 
