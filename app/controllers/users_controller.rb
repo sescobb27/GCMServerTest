@@ -17,6 +17,9 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  # the users of the app must have a mobile, which has a device id provided by
+  # google apis so we try to find this device id or created one and then create
+  # create an user
   def create
     @device = Gcm::Device.where(registration_id: params[:user][:regId]).first_or_create
     @user = User.add_to_database params[:user], @device, @parsed_entities
@@ -39,6 +42,9 @@ class UsersController < ApplicationController
     end
   end
 
+  # try to find the device with device id get it in request parameters,
+  # then if it exist is destroyed otherwise is send a message telling the 
+  # requested id was not found
   def destroy
     @device = verify_existence
     if @device

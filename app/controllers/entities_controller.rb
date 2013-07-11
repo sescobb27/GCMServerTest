@@ -5,6 +5,8 @@ class EntitiesController < ApplicationController
     @entity = Entity.new
   end
 
+  # create new company entity by request parameters, and parse the json array
+  # containing its categories
   def create
     @parsed = JSON.parse params[:entity].delete :categories
 		@entity = Entity.new params[:entity]
@@ -29,6 +31,7 @@ class EntitiesController < ApplicationController
   end
 
   private
+  # verifies if categories array is empty, if it's raise and exception
   def validates_categories(categories)
     raise 'You must select at least one category for your company' if categories.empty?
   end

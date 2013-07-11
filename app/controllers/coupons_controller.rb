@@ -84,6 +84,7 @@ class CouponsController < ApplicationController
   end
   
   private
+    # load entity to work with
     def load_entity
       #@entity = Entity.joins(:coupons).find(params[:entity_id])
       @entity = Entity.find params[:entity_id]
