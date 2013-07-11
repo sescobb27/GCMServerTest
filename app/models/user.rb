@@ -27,6 +27,9 @@ class User < ActiveRecord::Base
   belongs_to :device, class_name: 'Gcm::Device',foreign_key: 'gcm_device_id'
   # =============================end relationship=============================
 
+  # find companies as entities for users likes, then parse the birthday provided
+  # by user and finally instantiate new user object with the provided attributes
+  # and returns it
   def self.add_to_database(req_params, device, arr_entities)
     entities = Entity.where entity_name: arr_entities
     birth = Date.get_date_from_params req_params

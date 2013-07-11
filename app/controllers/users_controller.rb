@@ -19,7 +19,8 @@ class UsersController < ApplicationController
 
   # the users of the app must have a mobile, which has a device id provided by
   # google apis so we try to find this device id or created one and then create
-  # create an user
+  # create an user, note: the request is parsed in :parse_json to extract users
+  # likes
   def create
     @device = Gcm::Device.where(registration_id: params[:user][:regId]).first_or_create
     @user = User.add_to_database params[:user], @device, @parsed_entities
@@ -69,6 +70,9 @@ class UsersController < ApplicationController
     Gcm::Device.where(registration_id: params[:user][:regId]).first
   end
 
+  # when request is for create or update it contains users likes, which are
+  # companies as entities so we need to parse them to create or update users
+  # likes
   def parse_json
     @parsed_entities = JSON.parse params[:user].delete :entities
   end
