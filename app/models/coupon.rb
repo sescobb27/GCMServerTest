@@ -40,11 +40,19 @@ class Coupon < ActiveRecord::Base
 
     # convert coupon object into a hash to send as json
   	def to_h
+=begin
   		coupon_hash = Hash.new
   		coupon_hash[:coupon_name] = self.coupon_name
   		coupon_hash[:coupon_msg] = self.coupon_msg
   		coupon_hash[:coupon_image] = self.coupon_image unless self.coupon_image.url.empty?
   		coupon_hash
+=end
+      coupon_image = self.coupon_image unless self.coupon_image.url.empty?
+      {
+        coupon_name: self.coupon_name,
+        coupon_msg: self.coupon_msg,
+        coupon_image: coupon_image
+      }.to_json
   	end
 
   	private
