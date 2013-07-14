@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  # when the request is POST and it was send as JSON skip athenticity token validation
+  # cuando el request es POST y es enviado vía JSON desde el celular evita la validación
+  # del token de autenticidad
   skip_before_filter :verify_authenticity_token,
                      if: Proc.new { |_user| _user.request.format == 'application/json' }
   before_filter :parse_json, only:  [:create, :update]
@@ -17,10 +18,13 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  # the users of the app must have a mobile, which has a device id provided by
-  # google apis so we try to find this device id or created one and then create
-  # create an user, note: the request is parsed in :parse_json to extract users
-  # likes
+  # los usuarios de la aplicación tienen que ser usuarios mobiles, cada
+  # celular tiene un id asignado ya sea por Google, Apple o Windows Phone por lo
+  # por lo que al recibir el request para crear un usuario en la app sera enviado
+  # este id y trataremos de encontrarlo o crearlo en la base de datos de celulares
+  # registrados, luego crearemos un usuario asociado, el request contendrá un campo
+  # :entities que contiene los gustos de cada usuario por lo que sera parseado
+  # y asignado a @parsed_entities ver parse_json()
   def create
     @device = Gcm::Device.where(registration_id: params[:user][:regId]).first_or_create
     @user = User.add_to_database params[:user], @device, @parsed_entities
@@ -43,9 +47,9 @@ class UsersController < ApplicationController
     end
   end
 
-  # try to find the device with device id get it in request parameters,
-  # then if it exist is destroyed otherwise is send a message telling the 
-  # requested id was not found
+  # intenta encontrar el celular con el id enviado a través del request, luego, si
+  # existe sera destruido junto con su usuario asociado, de lo contrario sera enviado
+  # un mensaje diciendo que el id a ser eliminado no existe
   def destroy
     @device = verify_existence
     if @device
@@ -66,13 +70,14 @@ class UsersController < ApplicationController
   end
 
   private
+  # encuentra el celular con el (registration_id == id enviado), de lo contrario retorna nil
   def verify_existence
     Gcm::Device.where(registration_id: params[:user][:regId]).first
   end
 
-  # when request is for create or update it contains users likes, which are
-  # companies as entities so we need to parse them to create or update users
-  # likes
+  # cuando el request es un create o update contiene un campo con los gustos de cada
+  # usuario en un campo llamado :entities, por lo que necesitamos parcearlos y asignarlos
+  # a @parsed_entities para luego procesarlos
   def parse_json
     @parsed_entities = JSON.parse params[:user].delete :entities
   end

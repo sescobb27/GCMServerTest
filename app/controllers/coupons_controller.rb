@@ -1,5 +1,6 @@
 class CouponsController < ApplicationController
-	# when the request is POST and it was send as JSON skip athenticity token validation
+  # cuando el request es POST y es enviado vía JSON desde el celular evita la validación
+  # del token de autenticidad
 	#skip_before_filter :verify_authenticity_token,
 	#if: Proc.new { |_user| _user.request.format == 'application/json' }
   before_filter :load_entity, except: [:index, :by_place, :by_likes, :by_random]
@@ -7,9 +8,9 @@ class CouponsController < ApplicationController
   respond_to :html
   respond_to :json, only: :index
 
-  # find coupons directly from user entities likes which coupons are available
+  # encuentra 5 cupones disponibles de manera aleatoria, directamente sobre los gustos de cada usuario
   def index
-=begin
+=begin QUERY
   coupons.entity_id == entity.id and
   entity.id == user_entity.entity_id and
   user_entity.user_id == user.id and
@@ -28,9 +29,9 @@ class CouponsController < ApplicationController
     end
   end
 
-  # find coupons from entities in one or many locations which coupons are available
+  # encuentra 5 cupones disponibles de manera aleatoria, de acuerdo a un lugar (:location)
   def by_place
-=begin
+=begin QUERY
     coupons.entity_id == entity.id and
     entity.id == entity_location.entity_id and
     entity_location.location_id == location.id and
@@ -41,12 +42,14 @@ class CouponsController < ApplicationController
     @coupons = Coupon.joins(entity: :locations).where(coupon_state: true, locations: { name: params[:location] }).random(5)
   end
 
-  # find coupons from users likes (categories) which coupons are available
+  # encuentra 5 cupones disponibles de manera aleatoria, teniendo en cuenta los
+  # los gustos de cada usuario ( por categorías relacionadas a los negocios (:entities)
+  # seleccionados )
   def by_likes
 
   end
 
-  # find coupons from entities which coupons are available
+  # encuentra 5 cupones disponibles de manera aleatoria
   def by_random
 
   end
@@ -84,7 +87,9 @@ class CouponsController < ApplicationController
   end
   
   private
-    # load entity to work with
+    # cuando estamos tratando sobre los negocios ( :entities ) y no sobre los usuarios,
+    # necesitamos cargar previamente a cada acción el negocio sobre el cual
+    # estamos trabajando
     def load_entity
       #@entity = Entity.joins(:coupons).find(params[:entity_id])
       @entity = Entity.find params[:entity_id]
