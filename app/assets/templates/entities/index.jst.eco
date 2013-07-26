@@ -1,1 +1,9 @@
-<div class='page-header'>SmartOut Companies</div>
+<h1>SmartOut Companies</h1>
+
+<ul>
+<% for entity in @entities.models: %>
+  <li>
+    <%= entity.get('entity_name') %>
+  </li>
+<% end %>
+</ul>
