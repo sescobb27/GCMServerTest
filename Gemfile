@@ -11,13 +11,16 @@ gem 'randumb'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
+  gem "backbone-on-rails", "~> 1.0.0.0"
   gem 'uglifier', '>= 1.0.3'
 end
 
 group :development, :test do
   gem 'railroady'
-  gem 'rspec'
+  gem 'rspec-rails', '~> 2.14.0'
   gem 'bullet'
+  gem 'guard-rspec', '~> 3.0.2'
+  gem 'guard-livereload', '~> 1.4.0'
 end
 
 gem 'jquery-rails'
