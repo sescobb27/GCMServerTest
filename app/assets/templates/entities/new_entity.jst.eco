@@ -1,0 +1,26 @@
+<h1>Join us</h1>
+<form id="new_entity">
+  <label for="new_entity_name">Company name</label>
+  <input type="text"
+              placeholder="Company Name"
+              id="new_entity_name"
+              name="entity[entity_name]">
+
+  <label for="new_entity_email">Email</label>
+  <input type="text"
+              placeholder="foo@bar.com"
+              id="new_entity_email"
+              name="entity[entity_email]">
+
+  <label for="new_entity_telephone">Contact number</label>
+  <input type="text"
+              placeholder="333-33-33"
+              id="new_entity_telephone"
+              name="entity[entity_telephone_number]">
+
+  <input type="submit"
+              id="new_entity"
+              value="Awesome"
+              name="commit"
+              class="btn"></button>
+</form>
