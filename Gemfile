@@ -14,6 +14,7 @@ group :assets do
   gem "backbone-on-rails", "~> 1.0.0.0"
   gem 'uglifier', '>= 1.0.3'
   gem "twitter-bootstrap-rails"
+  gem "less-rails"
 end
 
 group :development, :test do
