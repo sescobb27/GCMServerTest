@@ -24,3 +24,12 @@
               name="commit"
               class="btn"></button>
 </form>
+
+<div class="toggler">
+  <div id="effect" class="ui-widget-content ui-corner-all">
+      <h2 class="ui-widget-header ui-corner-all">Show Types</h2>
+      <div class="show-types">
+        Some Types go here
+      </div>
+  </div>
+</div>
