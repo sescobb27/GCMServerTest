@@ -1,6 +1,6 @@
 class GCMServerTest.Routers.Entities extends Backbone.Router
   routes:
-    'entities/': 'index'
+    'entities': 'index'
     'entities/:id/coupons': 'entities_coupons' # url: #entities/:id/coupons
 
   initialize: ->

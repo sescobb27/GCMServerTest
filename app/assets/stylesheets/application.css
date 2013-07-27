@@ -11,7 +11,7 @@
  *= require_self
  *= require_tree .
  */
-h1 {
+/*h1 {
     color: rgb(42, 113, 158);
     font-family: 'Komika Axis';
     font-size: 10.5em;
@@ -19,7 +19,7 @@ h1 {
     text-align: center;
     text-rendering: optimizelegibility;
 
-}
+}*/
 .categories, .types{
 
     -webkit-column-count: 2;
