@@ -16,6 +16,7 @@
 //= require twitter/bootstrap
 //= require underscore
 //= require backbone
+//= require backbone.marionette
 //= require gcm_server_test
 //= require_tree ../templates
 //= require_tree ./models
