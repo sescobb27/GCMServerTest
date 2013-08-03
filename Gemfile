@@ -28,6 +28,7 @@ group :development, :test do
   gem 'guard-livereload'#, '~> 1.4.0'
   gem "quiet_assets"
   gem "guard-cucumber"
+  gem "debugger"
 end
 
 gem 'jquery-rails'
