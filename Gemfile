@@ -20,6 +20,8 @@ end
 
 group :development, :test do
   gem 'railroady'
+  gem 'rspec'#, '~> 2.14.0'
+  gem 'factory_girl'
   gem 'rspec-rails'#, '~> 2.14.0'
   gem 'bullet'
   gem 'guard-rspec'#, '~> 3.0.2'
