@@ -25,6 +25,7 @@ group :development, :test do
   gem 'guard-rspec'#, '~> 3.0.2'
   gem 'guard-livereload'#, '~> 1.4.0'
   gem "quiet_assets"
+  gem "guard-cucumber"
 end
 
 gem 'jquery-rails'
