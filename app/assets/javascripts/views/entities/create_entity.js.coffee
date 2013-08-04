@@ -15,7 +15,13 @@ class GCMServerTest.Views.NewEntity extends Backbone.View
 
   create_entity: (event) ->
     event.preventDefault()
-    alert 'NewEntity'
+    company_name = @$('#new_entity_name').val()
+    email = @$('#new_entity_email').val()
+    phone = @$('#new_entity_telephone').val()
+    entity = new GCMServerTest.Models.Entity({ entity_name: company_name,\
+      entity_email: email,\
+      entity_telephone_number: phone })
+    entity.save()
 
   display: (event) ->
     event.preventDefault()
