@@ -8,8 +8,13 @@ class EntitiesController < ApplicationController
   # create new company entity by request parameters, and parse the json array
   # containing its categories
   def create
-    @parsed = JSON.parse params[:entity].delete :categories
-		@entity = Entity.new params[:entity]
+    if params[:entity][:categories]
+      @parsed = JSON.parse params[:entity].delete :categories
+    else
+      render status: 406, text: 'Choose categories'
+      return
+    end
+    @entity = Entity.new params[:entity]
     begin
       validates_categories @parsed
       if @entity.add_categories @parsed

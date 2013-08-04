@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   # ===========================Attributes=====================================
-  attr_accessible :birthday, :email, :name, :gcm_device_id, :entities
+  attr_accessible :birthday, :email, :name, :gcm_device_id, :entities#, :secure_id
   # ===========================end attributes=================================
 
   # ===========================model validations============================
@@ -37,7 +37,8 @@ class User < ActiveRecord::Base
                     email: req_params[:email],
                     birthday: birth,
                     gcm_device_id: device.id,
-                    entities: entities
+                    entities: entities#,
+                    #secure_id: 'test1'
   end
 
   def add_entities(entities_arr)

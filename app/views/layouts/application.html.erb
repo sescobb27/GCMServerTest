@@ -3,41 +3,53 @@
 <head>
   <title>GCMServerTest</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <!-- <%= javascript_include_tag params[:controller]  %> -->
   <%= csrf_meta_tags %>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
 </head>
 <body>
-<div class="navbar .navbar-static-top navbar-inverse">
-  <div class="navbar-inner">
-    <a class="brand" href="#">SmartOut</a>
-    <ul class="nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li> <a href="#">About us</a> </li>
-      <li> <a href="#">Admins</a> </li>
-    </ul>
-  </div>
-</div>
+<script type="text/template" id="header">
+  <header class="navbar .navbar-static-top navbar-inverse" id="header">
+    <div class="navbar-inner">
+      <a class="brand" href="#">SmartOut</a>
+      <ul class="nav">
+        <li class="active"><%= link_to 'Home', '#' %></li>
+        <li> <%= link_to 'About us', '#' %> </li>
+        <li> <%= link_to 'Admins', '#' %> </li>
+        <li> <%= link_to 'Contact us', '#' %> </li>
+        <li> <%= link_to 'Add Companies', '#entities', id: 'entities_view' %> </li>
+      </ul>
+    </div>
+  </header>
+</script>
+<script type="text/template" id="validation">
+  <form class="navbar-form pull-right">
+    <input type="text" class="input-medium" placeholder="Validation key" required>
+    <button type="submit" class="btn btn-block">Validate</button>
+  </form>
+</script>
+<script type="text/template" id="footer">
+  <footer></footer>
+</script>
+<script type="text/template" id="main">
+  <%= yield %>
+</script>
+<div id="header_region"></div>
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span2">
       <!-- side bar -->
       <!-- coupon validations -->
-      <form class="navbar-form pull-right">
-        <input type="text" class="span10" placeholder="validation key">
-        <button type="submit" class="btn">Submit</button>
-      </form>
+      <div id="validation_region"></div>
     </div>
     <div class="span10">
-      <div class="container">
+      <div class="container" id="main_region">
         <!-- main page -->
-        <%= yield %>
       </div>
     </div>
   </div>
 </div>
-  
-
+<div id="footer_region"></div>
+<%= javascript_include_tag "application" %>
+<%= javascript_include_tag params[:controller]  %>
 </body>
 </html>

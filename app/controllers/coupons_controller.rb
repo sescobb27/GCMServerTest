@@ -60,8 +60,8 @@ class CouponsController < ApplicationController
 
   # POST /coupons
  	# POST /coupons.json
-	def create
-		@coupon = @entity.coupons.new params[:coupon]
+  def create
+  	@coupon = @entity.coupons.new params[:coupon]
     if @coupon.save
       respond_with do |format|
         format.html{ redirect_to entity_coupons_path(@entity), notice: 'Your new coupon was created successfully' }
@@ -69,9 +69,9 @@ class CouponsController < ApplicationController
     else
       respond_with(@coupon, notice: @coupon.errors)
     end
-	end
+  end
 
-	def show
+def show
 =begin
 		devices = Gcm::Device.find(5)
 		notification = Gcm::Notification.new
