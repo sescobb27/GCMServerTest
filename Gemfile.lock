@@ -50,6 +50,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    columnize (0.3.6)
     commonjs (0.2.6)
     configatron (2.13.0)
       yamler (>= 0.1.0)
@@ -59,6 +60,12 @@ GEM
       gherkin (~> 2.12.0)
       multi_json (~> 1.7.5)
       multi_test (>= 0.0.2)
+    debugger (1.6.1)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.2.3)
+    debugger-linecache (1.2.0)
+    debugger-ruby_core_source (1.2.3)
     diff-lcs (1.2.4)
     eco (1.0.0)
       coffee-script
@@ -235,6 +242,7 @@ DEPENDENCIES
   backbone-on-rails (~> 1.0.0.0)
   bullet
   coffee-rails
+  debugger
   factory_girl_rails
   gcm_on_rails
   guard-cucumber
