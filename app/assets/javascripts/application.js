@@ -14,8 +14,24 @@
 //= require jquery_ujs
 //= require jquery-ui-1.10.3.custom.min
 //= require twitter/bootstrap
-//= require underscore
-//= require backbone
-//= require backbone.marionette
-//= require gcm_server_test
-//= require_tree ../templates
+
+// require underscore
+// require backbone
+// require backbone.marionette
+// require smartout
+// require_tree ./routes
+
+//= require handlebars
+//= require ember
+//= require ember-data
+//= require_self
+//= require ./store
+//= require_tree ./smartout/models
+//= require_tree ./smartout/controllers
+//= require_tree ./smartout/views
+//= require_tree ./smartout/helpers
+//= require_tree ./smartout/templates
+//= require ./router
+
+// for more details see: http://emberjs.com/guides/application/
+window.SmartOut = Ember.Application.create();
