@@ -1,18 +1,18 @@
-class GCMServerTest.Views.EntitiesIndex extends Backbone.View
+# class GCMServerTest.Views.EntitiesIndex extends Backbone.View
 
-  template: JST['entities/index']
+#   template: JST['entities/index']
 
-  events:
-    'click #entity_form': 'new'
+#   events:
+#     'click #entity_form': 'new'
 
-  initialize: ->
+#   initialize: ->
 
-  render: ->
-    $(@el).html(@template())
-    this
+#   render: ->
+#     $(@el).html(@template())
+#     this
 
-  new: (event) ->
-    event.preventDefault()
-    form_view = new GCMServerTest.Views.NewEntity()
-    $(@el).append( form_view.render().el)
-    @$('#entity_form').remove()
+#   new: (event) ->
+#     event.preventDefault()
+#     form_view = new GCMServerTest.Views.NewEntity()
+#     $(@el).append( form_view.render().el)
+#     @$('#entity_form').remove()

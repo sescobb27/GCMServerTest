@@ -1,0 +1,5 @@
+      <h1>Contact Us</h1>
+      <form class='form-inline' {{action 'send_email' on='submit'}}>
+            {{input type='email' placeholder='example@example.com'}}
+            <button {{action 'send_email'}}>Send</button>
+      </form>

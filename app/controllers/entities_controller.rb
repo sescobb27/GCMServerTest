@@ -31,7 +31,7 @@ class EntitiesController < ApplicationController
   end
 
   def index
-    @entities = Entity.select(:entity_name).all
+    @entities = Entity.all
     respond_with @entities
   end
 

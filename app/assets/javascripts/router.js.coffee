@@ -2,6 +2,7 @@
 
 SmartOut.Router.map () ->
   @resource('index', { path: '/' })
+  @resource('smartout')
   @resource('entities')
 
 SmartOut.EntitiesRoute = Ember.Route.extend

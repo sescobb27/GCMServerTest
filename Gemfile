@@ -7,6 +7,8 @@ gem 'gcm_on_rails'
 gem "paperclip", "~> 3.5.1"
 gem 'whenever', :require => false
 gem 'randumb'
+gem 'active_model_serializers'
+ruby '2.0.0'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.6'
