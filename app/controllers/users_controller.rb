@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   # cuando el request es POST y es enviado vía JSON desde el celular evita la validación
   # del token de autenticidad
-  skip_before_filter :verify_authenticity_token,
-                     if: Proc.new { |_user| _user.request.format == 'application/json' }
+  # skip_before_filter :verify_authenticity_token,
+  #                    if: Proc.new { |_user| _user.request.format == 'application/json' }
   before_filter :parse_json, only:  [:create, :update]
   respond_to :html, :json
   def add_entity
