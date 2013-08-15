@@ -21,8 +21,6 @@ class Type < ActiveRecord::Base
   has_many :type_categories
   has_many :categories, through: :type_categories
   # =============================end relationship=============================
-  scope :only_names, select(:type_name)
-
 
   def add_category(category_hash)
     category_hash.each_value do |cat_name|
