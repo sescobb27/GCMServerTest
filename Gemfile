@@ -25,15 +25,23 @@ end
 
 group :development, :test do
   gem 'railroady'
-  gem 'rspec', '~> 2.14.0'
-  gem 'factory_girl_rails'
-  gem 'rspec-rails', '~> 2.14.0'
   gem 'bullet', '~> 4.6.0'
   gem 'guard-rspec'#, '~> 3.0.2'
   gem 'guard-livereload'#, '~> 1.4.0'
   gem "quiet_assets"
   gem "guard-cucumber"
   gem "debugger"
+end
+
+group :test do
+  gem 'simplecov'
+  gem 'rspec', '~> 2.14.0'
+  gem 'factory_girl_rails'
+  gem 'rspec-rails', '~> 2.14.0'
+  gem 'zeus'
+  gem 'cucumber-rails', :require => false
+  gem 'cucumber-rails-training-wheels'
+  gem 'database_cleaner'
 end
 
 gem 'jquery-rails'
