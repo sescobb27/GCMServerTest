@@ -1,11 +1,11 @@
 # For more information see: http://emberjs.com/guides/routing/
 
-SmartOut.Router.map () ->
+App.Router.map () ->
   @resource('index', { path: '/' })
   @resource('smartout')
   @resource('entities')
 
-SmartOut.EntitiesRoute = Ember.Route.extend
+App.EntitiesRoute = Ember.Route.extend
   # activate: ->
   # deactivate: ->
   # setupController: (controller, model)->
@@ -14,5 +14,5 @@ SmartOut.EntitiesRoute = Ember.Route.extend
   # afterModel: ->
 
   model: ->
-    SmartOut.Entity.find()
+    App.Entity.find()
 

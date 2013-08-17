@@ -1,10 +1,10 @@
-SmartOut.Entity = DS.Model.extend
+App.Entity = DS.Model.extend
   entity_email: DS.attr('string')
   entity_name: DS.attr('string')
   entity_telephone_number: DS.attr('string')
 
 # example data
-SmartOut.Entity.FIXTURES = [
+App.Entity.FIXTURES = [
       {
             id: 1,
             entity_email: 'correo@correo.com',

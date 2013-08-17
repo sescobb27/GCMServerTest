@@ -29,6 +29,6 @@
 //= require gcm_server_test
 
 // for more details see: http://emberjs.com/guides/application/
-window.SmartOut = Ember.Application.create();
+window.App = Ember.Application.create();
 
 //= require_tree .
