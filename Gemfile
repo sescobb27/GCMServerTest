@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.12'
+gem 'rails', '3.2.14'
+# gem 'rails', '3.2.12'
 gem 'therubyracer'
 gem 'mysql2','~> 0.3.13'
 gem 'gcm_on_rails'
@@ -39,9 +40,11 @@ group :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails', '~> 2.14.0'
   gem 'zeus'
+  gem 'autotest'
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels'
   gem 'database_cleaner'
+  gem 'ffaker'
 end
 
 gem 'jquery-rails'
