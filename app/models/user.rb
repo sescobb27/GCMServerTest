@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   # and returns it
   def self.add_to_database(req_params, device, arr_entities)
     entities = Entity.where entity_name: arr_entities
-    birth = Date.get_date_from_params req_params
+    birth = req_params[:birthday].to_date
     User.new name: req_params[:name],
                     email: req_params[:email],
                     birthday: birth,

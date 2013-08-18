@@ -8,8 +8,8 @@
 </head>
 <body>
 <script type="text/x-handlebars">
-      <header class="navbar .navbar-static-top navbar-inverse" id="header_region">
-          <div class="navbar-inner">
+      <header class="navbar navbar-inverse" id="header_region">
+          <nav class="navbar-inner .navbar-static-top">
                 <a class="brand" href="#">SmartOut</a>
                 <ul class="nav">
                       <li class="active"><%= link_to 'Home', '#' %></li>
@@ -18,11 +18,11 @@
                       <li> {{#linkTo 'smartout'}} Contact us {{/linkTo}} </li>
                       <li> {{#linkTo 'entities'}} Add Companies {{/linkTo}} </li>
                 </ul>
-          </div>
+          </nav>
       </header>
       <div class="container-fluid">
             <div class="row-fluid">
-                  <section class="span2" id="validation_region">
+                  <section class="container span2" id="validation_region">
                         <form class="navbar-form pull-right">
                              <input type="text" class="input-medium" placeholder="Validation key" required>
                              <button type="submit" class="btn btn-block">Validate</button>
@@ -39,15 +39,22 @@
 <footer id="footer_region">
 </footer>
 <script type="text/x-handlebars" data-template-name="entities">
-      <ul id="entity-list">
-           {{#each controller}}
-                       <li>
-                             <label>{{entity_name}}</label>
-                             <label>{{entity_email}}</label>
-                             <label>{{entity_telephone_number}}</label>
-                       </li>
-           {{/each}}
-      </ul>
+      <table class="table" id="entity-list">
+        <thead>
+          <td>Name</td>
+          <td>E-mail</td>
+          <td>Contact number</td>
+        </thead>
+        <tbody>
+        {{#each controller}}
+          <tr>
+            <td><label>{{entity_name}}</label></td>
+            <td><label>{{entity_email}}</label></td>
+            <td><label>{{entity_telephone_number}}</label></td>
+          </tr>
+        </tbody>
+        {{/each}}
+      </table>
 </script>
 <%= javascript_include_tag "application" %>
 <!--<%= javascript_include_tag params[:controller]  %> -->

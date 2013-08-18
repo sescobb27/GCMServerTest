@@ -2,7 +2,9 @@
 
 App.Store = DS.Store.extend
   revision: 12
+  # adapter: DS.RESTAdapter
   # adapter: DS.RESTAdapter.create()
-  adapter: 'DS.FixtureAdapter'
-
-
+  # adapter: 'DS.FixtureAdapter'
+DS.RESTAdapter.configure("plurals", {
+  entity: "entities"
+});
