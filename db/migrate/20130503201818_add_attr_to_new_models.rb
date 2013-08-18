@@ -6,6 +6,6 @@ class AddAttrToNewModels < ActiveRecord::Migration
       add_column :categories, :category_description, :string
       add_column :entity_categories, :entity_id, :integer, null: false
       add_column :entity_categories, :category_id, :integer, null: false
-      add_index :entity_categories, :entity_id
+      add_index :entity_categories, :entity_id, unique: false
   end
 end
