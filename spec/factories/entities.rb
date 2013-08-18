@@ -2,6 +2,6 @@
 require 'ffaker'
 
 FactoryGirl.define do
-  factory :type do
+  factory :entity do
   end
 end

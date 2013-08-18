@@ -1,9 +1,42 @@
 require 'spec_helper'
 
 describe User do
-    context "should be invalid users without" do
-        it "name"
-        it "email"
+    context "should be invalid users" do
+        describe "wrong name" do
+            it "should have errors if name is nil" do
+                expect(FactoryGirl.build :user, name: nil).to have(2).error_on(:name)
+            end
+            it "should have errors if name is blank" do
+                expect(FactoryGirl.build :user, name: '').to have(2).error_on(:name)
+            end
+            it "should have errors if name is too short" do
+                expect(FactoryGirl.build :user, name: 'foo bar').to have(1).error_on(:name)
+            end
+            it "should have errors if name is too long" do
+                expect(FactoryGirl.build :user, name: ->{'foo bar'*20}).to have(1).error_on(:name)
+            end
+        end
+        describe "wrong email" do
+            it "should have errors if email is nil" do
+                expect(FactoryGirl.build :user, email: nil).to have(2).error_on(:email)
+            end
+            it "should have errors if email is blank" do
+                expect(FactoryGirl.build :user, email: '').to have(2).error_on(:email)
+            end
+            it "should have errors if email is not unique" do
+                FactoryGirl.create :user, email: 'foo@bar.com'
+                expect(FactoryGirl.build :user, email: 'foo@bar.com').to have(1).error_on(:email)
+            end
+            it "should have errors if email not has the correct format" do
+                expect(FactoryGirl.build :user, email: 'foo').to have(1).error_on(:email)
+                expect(FactoryGirl.build :user, email: 'foo@').to have(1).error_on(:email)
+                expect(FactoryGirl.build :user, email: 'foo@.').to have(1).error_on(:email)
+                expect(FactoryGirl.build :user, email: 'foo@com').to have(1).error_on(:email)
+                expect(FactoryGirl.build :user, email: 'foo@.com').to have(1).error_on(:email)
+                expect(FactoryGirl.build :user, email: 'foo@.com').to have(1).error_on(:email)
+                expect(FactoryGirl.build :user, email: '.foo.@.com').to have(1).error_on(:email)
+            end
+        end
         it "birthday"
         it "gcm_device_id"
         it "likes"

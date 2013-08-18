@@ -1,4 +1,5 @@
 require 'spec_helper'
 
-describe Coupon do
+describe Entity do
+  
 end
