@@ -4,13 +4,23 @@ describe Entity do
   context "should be invalid entities" do
     describe "wrong email" do
         it "should have errors if email is nil" do
-            pending
+            expect(FactoryGirl.build :entity, entity_email: nil).to have(3).error_on(:entity_email)
         end
         it "should have errors if email is blank" do
-            pending
+            expect(FactoryGirl.build :entity, entity_email: '').to have(3).error_on(:entity_email)
+        end
+        it "should have errors if email is not unique" do
+            FactoryGirl.create :entity, entity_email: 'foo@bar.com'
+            expect(FactoryGirl.build :entity, entity_email: 'foo@bar.com').to have(1).error_on(:entity_email)
         end
         it "should have errors if email is not in the correct format" do
-            pending
+            expect(FactoryGirl.build :entity, entity_email: 'foo').to have(1).error_on(:entity_email)
+            expect(FactoryGirl.build :entity, entity_email: 'foo@').to have(1).error_on(:entity_email)
+            expect(FactoryGirl.build :entity, entity_email: 'foo@.').to have(1).error_on(:entity_email)
+            expect(FactoryGirl.build :entity, entity_email: 'foo@com').to have(1).error_on(:entity_email)
+            expect(FactoryGirl.build :entity, entity_email: 'foo@.com').to have(1).error_on(:entity_email)
+            expect(FactoryGirl.build :entity, entity_email: 'foo@.com').to have(1).error_on(:entity_email)
+            expect(FactoryGirl.build :entity, entity_email: '.foo.@.com').to have(1).error_on(:entity_email)
         end
     end
     describe "wrong name" do
@@ -32,6 +42,12 @@ describe Entity do
         end
     end
     describe "wrong telephone" do
+        it "should have errors if telephone number is nil" do
+        end
+        it "should have errors if telephone number is blank" do
+        end
+        it "should have errors if telephone number is not in the correct format" do
+        end
     end
   end
   context "should be valid entities" do
