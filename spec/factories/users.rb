@@ -7,7 +7,10 @@ FactoryGirl.define do
     user.email {Faker::Internet.email}
     user.birthday {rand(10.years).ago.to_date}
     user.gcm_device_id {SecureRandom.urlsafe_base64}
-    # user.entities ['San Carbon', 'Mondongos', 'Crysta']
     user.secure_token {SecureRandom.urlsafe_base64}
+    factory :user_with_likes do
+    end
+    factory :user_with_coupons do
+    end
   end
 end

@@ -27,7 +27,7 @@ describe User do
                 FactoryGirl.create :user, email: 'foo@bar.com'
                 expect(FactoryGirl.build :user, email: 'foo@bar.com').to have(1).error_on(:email)
             end
-            it "should have errors if email not has the correct format" do
+            it "should have errors if email is not in the correct format" do
                 expect(FactoryGirl.build :user, email: 'foo').to have(1).error_on(:email)
                 expect(FactoryGirl.build :user, email: 'foo@').to have(1).error_on(:email)
                 expect(FactoryGirl.build :user, email: 'foo@.').to have(1).error_on(:email)
