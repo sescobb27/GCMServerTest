@@ -20,6 +20,7 @@
 // require backbone.marionette
 // require smartout
 // require_tree ./routes
+//= require jqueryeasing
 
 //-------------------- emberjs
 //= require handlebars
@@ -30,5 +31,4 @@
 
 // for more details see: http://emberjs.com/guides/application/
 window.App = Ember.Application.create();
-
 //= require_tree .
