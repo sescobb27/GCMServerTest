@@ -5,103 +5,14 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style type="text/css">
-  /* Slider Style */
-  .smartout_container{
-    width:100%;
-    height:420px;
-    position:relative;
-    border-top:7px solid #333;
-    border-bottom:7px solid #333;
-    overflow:hidden;
-    -moz-box-shadow:0px 0px 7px #000;
-    -webkit-box-shadow:0px 0px 7px #000;
-    box-shadow:0px 0px 7px #000;
-  }
-  .smartout_slider_wrapper{
-    display:none;
-  }
-  .smartout_container ul{
-    margin:0px;
-    padding:0px;
-    list-style:none;
-  }
-  ul.smartout_slider{
-    position:absolute;
-    left:0px;
-    top:0px;
-    height:420px;
-  }
-  ul.smartout_slider li{
-    height:420px;
-    float:left;
-    position:relative;
-  }
-  ul.smartout_slider li img{
-    display:block;
-    margin:35px auto 0px auto;
-    -moz-box-shadow:0px 0px 7px #222;
-    -webkit-box-shadow:0px 0px 7px #222;
-    box-shadow:0px 0px 7px #222;
-    border: 8px solid transparent;
-    -moz-border-radius:4px;
-    -webkit-border-radius:4px;
-    border-radius:4px;
-  }
-  ul.smartout_thumbnails{
-    height:35px;
-    position:absolute;
-    top:320px;
-    left:50%;
-  }
-  ul.smartout_thumbnails li{
-    position:absolute;
-    display:block;
-  }
-  ul.smartout_thumbnails li img{
-    border: 5px solid #FFFFFF;
-    -moz-box-shadow:1px 1px 7px #555;
-    -webkit-box-shadow:1px 1px 7px #555;
-    box-shadow:1px 1px 7px #555;
-    cursor:pointer;
-    display:block;
-    opacity:0.7;
-  }
-  ul.smartout_thumbnails li.selected img{
-    opacity:1.0;
-  }
-  .smartout_navigation span{
-    position:absolute;
-    width:30px;
-    height:60px;
-    -moz-box-shadow:0px 0px 2px #000;
-    -webkit-box-shadow:0px 0px 2px #000;
-    box-shadow:0px 0px 2px #000;
-    top:145px;
-    opacity:0.6;
-    -moz-border-radius:4px;
-    -webkit-border-radius:4px;
-    border-radius:4px;
-    cursor:pointer;
-  }
-  .smartout_navigation span:hover{
-    opacity:0.9;
-  }
-  .smartout_navigation span.pxs_prev{
-    background:#000 url(assets/prev.png) no-repeat center center;
-  }
-  .smartout_navigation span.pxs_next{
-    background:#000 url(assets/next.png) no-repeat center center;
-  }
-  </style>
 </head>
 <body>
 <script type="text/x-handlebars">
-      <header class="navbar navbar-static-top navbar-inverse" id="header_region">
+      <header class="navbar navbar-static-top" id="header_region">
           <nav class="navbar-inner">
                 <a class="brand" href="#">SmartOut</a>
                 <ul class="nav">
-                      <li class="active"><%= link_to 'Home', '#' %></li>
+                      <li><%= link_to 'Home', '#' %></li>
                       <li> <%= link_to 'About us', '#' %> </li>
                       <li> <%= link_to 'Admins', '#' %> </li>
                       <li> {{#linkTo 'smartout'}} Contact us {{/linkTo}} </li>
@@ -113,38 +24,23 @@
                 </form>
           </nav>
       </header>
+      <div id="fondo">
+      </div>
+      <div id="logo">
+      </div>
       <div class="container">
-          <h1>SmartOut</h1>
-          <div class="container-fluid row-fluid">
-                <section class="span12" id="main_region">
+                <section class="" id="main_region">
                      <!-- <%= yield %> -->
+                     <div><h1> SmartOut </h1></div>
                      {{outlet}}
                 </section>
-          </div>
       </div>
 </script>
 <script type="text/x-handlebars" data-template-name="index">
-<div id="smartout_container" class="smartout_container">
-      <div class="smartout_slider_wrapper">
-          <ul class="smartout_slider">
-              <li><%= image_tag "1.png", alt: "First Image" %></li>
-              <li><%= image_tag "2.png", alt: "Second Image" %></li>
-              <li><%= image_tag "3.png", alt: "Third Image" %></li>
-              <li><%= image_tag "4.png", alt: "Forth Image" %></li>
-              <li><%= image_tag "5.png", alt: "Fifth Image" %></li>
-          </ul>
-          <div class="smartout_navigation">
-              <span class="pxs_next"></span>
-              <span class="pxs_prev"></span>
-          </div>
-          <ul class="smartout_thumbnails">
-              <li><%= image_tag "thumbs/1.png", alt: "First Image" %></li>
-              <li><%= image_tag "thumbs/2.png", alt: "Second Image" %></li>
-              <li><%= image_tag "thumbs/3.png", alt: "Third Image" %></li>
-              <li><%= image_tag "thumbs/4.png", alt: "Forth Image" %></li>
-              <li><%= image_tag "thumbs/5.png", alt: "Fifth Image" %></li>
-          </ul>
-      </div>
+<div class="smartout-menu">
+    <%= image_tag "comida.png", alt: "Let's go eat" %>
+    <%= image_tag "shots.png", alt: "Let's go drink" %>
+    <%= image_tag "party.png", alt: "Let's go party" %>
 </div>
 </script>
 <footer id="footer_region">
@@ -168,248 +64,6 @@
       </table>
 </script>
 <%= javascript_include_tag "application" %>
-<script type="text/javascript">
-      (function($) {
-        $.fn.parallaxSlider = function(options) {
-          var opts = $.extend({}, $.fn.parallaxSlider.defaults, options);
-          return this.each(function() {
-            var $smartout_container  = $(this),
-            o         = $.meta ? $.extend({}, opts, $smartout_container.data()) : opts;
-            
-            //the main slider
-            var $smartout_slider   = $('.smartout_slider',$smartout_container),
-            //the elements in the slider
-            $elems      = $smartout_slider.children(),
-            //total number of elements
-            total_elems   = $elems.length,
-            //the navigation buttons
-            $pxs_next   = $('.pxs_next',$smartout_container),
-            $pxs_prev   = $('.pxs_prev',$smartout_container),
-            //current image
-            current     = 0,
-            //the thumbs container
-            $smartout_thumbnails = $('.smartout_thumbnails',$smartout_container),
-            //the thumbs
-            $thumbs     = $smartout_thumbnails.children(),
-            //the interval for the autoplay mode
-            slideshow,
-            //the loading image
-            $smartout_slider_wrapper = $('.smartout_slider_wrapper',$smartout_container);
-              
-            //first preload all the images
-            var loaded    = 0,
-            $images   = $smartout_slider_wrapper.find('img');
-              
-            $images.each(function(){
-              var $img  = $(this);
-              $('<img/>').load(function(){
-                ++loaded;
-                if(loaded == total_elems*2){
-                  $smartout_slider_wrapper.show();
-                    
-                  //one images width (assuming all images have the same sizes)
-                  var one_image_w   = $smartout_slider.find('img:first').width();
-              
-                  /*
-                  need to set width of the slider,
-                  of each one of its elements, and of the
-                  navigation buttons
-                   */
-                  setWidths($smartout_slider,
-                  $elems,
-                  total_elems,
-                  one_image_w,
-                  $pxs_next,
-                  $pxs_prev);
-              
-                  /*
-                    set the width of the thumbs
-                    and spread them evenly
-                   */
-                  $smartout_thumbnails.css({
-                    'width'     : one_image_w + 'px',
-                    'margin-left'   : -one_image_w/2 + 'px'
-                  });
-                  var spaces  = one_image_w/(total_elems+1);
-                  $thumbs.each(function(i){
-                    var $this   = $(this);
-                    var left  = spaces*(i+1) - $this.width()/2;
-                    $this.css('left',left+'px');
-                      
-                    if(o.thumbRotation){
-                      var angle   = Math.floor(Math.random()*41)-20;
-                      $this.css({
-                        '-moz-transform'  : 'rotate('+ angle +'deg)',
-                        '-webkit-transform' : 'rotate('+ angle +'deg)',
-                        'transform'     : 'rotate('+ angle +'deg)'
-                      });
-                    }
-                    //hovering the thumbs animates them up and down
-                    $this.bind('mouseenter',function(){
-                      $(this).stop().animate({top:'-10px'},100);
-                    }).bind('mouseleave',function(){
-                      $(this).stop().animate({top:'0px'},100);
-                    });
-                  });
-                    
-                  //make the first thumb be selected
-                  highlight($thumbs.eq(0));
-                    
-                  //slide when clicking the navigation buttons
-                  $pxs_next.bind('click',function(){
-                    ++current;
-                    if(current >= total_elems)
-                      if(o.circular)
-                        current = 0;
-                    else{
-                      --current;
-                      return false;
-                    }
-                    highlight($thumbs.eq(current));
-                    slide(current,
-                    $smartout_slider,
-                    o.speed,
-                    o.easing
-                    );
-                  });
-                  $pxs_prev.bind('click',function(){
-                    --current;
-                    if(current < 0)
-                      if(o.circular)
-                        current = total_elems - 1;
-                    else{
-                      ++current;
-                      return false;
-                    }
-                    highlight($thumbs.eq(current));
-                    slide(current,
-                    $smartout_slider,
-                    o.speed,
-                    o.easing
-                    );
-                  });
-              
-                  /*
-                  clicking a thumb will slide to the respective image
-                   */
-                  $thumbs.bind('click',function(){
-                    var $thumb  = $(this);
-                    highlight($thumb);
-                    //if autoplay interrupt when user clicks
-                    if(o.auto)
-                      clearInterval(slideshow);
-                    current   = $thumb.index();
-                    slide(current,
-                    $smartout_slider,
-                    o.speed,
-                    o.easing
-                    );
-                  });
-              
-                
-              
-                  /*
-                  activate the autoplay mode if
-                  that option was specified
-                   */
-                  if(o.auto != 0){
-                    o.circular  = true;
-                    slideshow = setInterval(function(){
-                      $pxs_next.trigger('click');
-                    },o.auto);
-                  }
-              
-                  /*
-                  when resizing the window,
-                  we need to recalculate the widths of the
-                  slider elements, based on the new windows width.
-                  we need to slide again to the current one,
-                  since the left of the slider is no longer correct
-                   */
-                  $(window).resize(function(){
-                    w_w = $(window).width();
-                    setWidths($smartout_slider,$elems,total_elems,one_image_w,$pxs_next,$pxs_prev);
-                    slide(current,
-                    $smartout_slider,
-                    1,
-                    o.easing
-                    );
-                  });
-
-                }
-              }).error(function(){
-                alert('here')
-              }).attr('src',$img.attr('src'));
-            });
-              
-              
-              
-          });
-        };
-        
-        //the current windows width
-        var w_w       = $(window).width();
-        
-        var slide     = function(current,
-        $smartout_slider,
-        speed,
-        easing
-        ){
-          var slide_to  = parseInt(-w_w * current);
-          $smartout_slider.stop().animate({
-            left  : slide_to + 'px'
-          },speed, easing);
-        }
-        
-        var highlight   = function($elem){
-          $elem.siblings().removeClass('selected');
-          $elem.addClass('selected');
-        }
-        
-        var setWidths   = function($smartout_slider,
-        $elems,
-        total_elems,
-        one_image_w,
-        $pxs_next,
-        $pxs_prev){
-          /*
-          the width of the slider is the windows width
-          times the total number of elements in the slider
-           */
-          var smartout_slider_w  = w_w * total_elems;
-          $smartout_slider.width(smartout_slider_w + 'px');
-          //each element will have a width = windows width
-          $elems.width(w_w + 'px');
-          
-          /*
-          both the right and left of the
-          navigation next and previous buttons will be:
-          windowWidth/2 - imgWidth/2 + some margin (not to touch the image borders)
-           */
-          var position_nav  = w_w/2 - one_image_w/2 + 3;
-          $pxs_next.css('right', position_nav + 'px');
-          $pxs_prev.css('left', position_nav + 'px');
-        }
-        
-        $.fn.parallaxSlider.defaults = {
-          auto      : 0,  //how many seconds to periodically slide the content.
-                      //If set to 0 then autoplay is turned off.
-          speed     : 1000,//speed of each slide animation
-          easing      : 'jswing',//easing effect for the slide animation
-          circular    : true,//circular slider
-          thumbRotation : true//the thumbs will be randomly rotated
-        };
-        //easeInOutExpo,easeInBack
-      })(jQuery);
-    </script>
-
-    <script type="text/javascript">
-      $(function() {
-        var $smartout_container  = $('#smartout_container');
-        $smartout_container.parallaxSlider();
-      });
-        </script>
-
 <!--<%= javascript_include_tag params[:controller]  %> -->
 </body>
 </html>

@@ -43,10 +43,13 @@ describe Entity do
     end
     describe "wrong telephone" do
         it "should have errors if telephone number is nil" do
+            expect(FactoryGirl.build :entity, entity_telephone_number: nil).to have(2).error_on(:entity_telephone_number)
         end
         it "should have errors if telephone number is blank" do
+            expect(FactoryGirl.build :entity, entity_telephone_number: '').to have(2).error_on(:entity_telephone_number)
         end
         it "should have errors if telephone number is not in the correct format" do
+            expect(FactoryGirl.build :entity, entity_telephone_number: '999 999 999').to have(1).error_on(:entity_telephone_number)
         end
     end
   end

@@ -20,7 +20,7 @@
 // require backbone.marionette
 // require smartout
 // require_tree ./routes
-//= require jqueryeasing
+//= require parallax
 
 //-------------------- emberjs
 //= require handlebars

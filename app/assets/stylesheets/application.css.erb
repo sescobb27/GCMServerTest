@@ -1,0 +1,136 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+/*h1 {
+    color: rgb(42, 113, 158);
+    font-family: 'Komika Axis';
+    font-size: 10.5em;
+    margin: 0 auto;
+    text-align: center;
+    text-rendering: optimizelegibility;
+
+}*/
+.categories, .types{
+
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+
+    -webkit-column-width: 5em;
+    -moz-column-width: 5em;
+    column-width: 5em;
+
+    -webkit-column-gap: 1em;
+    -moz-column-gap: 1em;
+    column-gap: 1em;
+
+    margin: 0 auto;
+    width: 35%;
+
+    font-size: 2em;
+}
+
+.categories .category, .types .type {
+
+    border:3px solid #ffdcc6;
+
+    border-radius: 0.5em;
+    -moz-border-radius: 0.5em;
+    -webkit-border-radius: 0.5em;
+
+    box-shadow: 5px 5px 5px #2f4f4f;
+    -moz-box-shadow: 5px 5px 5px #2f4f4f;
+    -webkit-box-shadow: 5px 5px 5px #2f4f4f;
+    opacity: 0.5;
+
+    font-family: 'Komika Axis';
+    text-align: center;
+    margin: 0 auto;
+    padding: 1em 1em;
+}
+
+.type, .category {
+    margin-bottom: 1em;
+    margin-top: 1em;
+    width: 65%;
+}
+
+  #logo {
+    background: url(<%= asset_data_uri 'logo.png' %>) top center no-repeat;
+    position: relative;
+    top: 1;
+    width: 100%;
+    height: 1000px;
+    z-index: 300;
+    opacity: 0.4;
+  }
+
+  #fondo {
+    background: #fff url(<%= asset_data_uri 'fondo.jpg' %>) top center no-repeat;
+    width: 100%;
+    height: 4000px;
+    position: fixed;
+    top: 0;
+    opacity: 0.4;
+    z-index: 100;
+  }
+
+  #header_region {
+    position: relative;
+    z-index: 500;
+    opacity: 0.5;
+  }
+
+  .container {
+    position: relative;
+    z-index: 500;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .nav li:hover {
+    background: #888;
+    opacity: 0.5;
+  }
+
+  @font-face {
+    font-family: "SmartOutFont";
+    src: url(<%= asset_data_uri 'Channel_Slanted1.ttf' %>) format('truetype');
+    /*src: url(<%= font_path 'Channel_Slanted1.ttf' %>) format('truetype');*/
+  }
+
+  #main_region h1 {
+    font-family: "SmartOutFont";
+    font-size: 40px;
+    opacity: 0.8;
+    margin-top: 25px;
+  }
+  .smartout-menu {
+    margin: 0 auto;
+  }
+
+  #validation_region {
+    opacity: 1;
+  }
+
+  .smartout-menu img {
+    width: 21em;
+    height: 13em;
+    opacity: 0.7;
+    float: left;
+    padding: 25px 25px 25px 25px;
+  }
+
+  .smartout-menu img:hover {
+    opacity: 1;
+  }
