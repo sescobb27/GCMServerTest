@@ -1,28 +1,33 @@
 class Entity < ActiveRecord::Base
 
   # ===========================Attributes=====================================
-    attr_accessible :entity_email, :entity_name, :entity_telephone_number#, :categories
+  attr_accessible :entity_email, :entity_name, :entity_telephone_number#, :categories
   # ===========================end attributes=================================
   	
   # ===========================model validations=============================
-  validates_format_of :entity_email,
-  			with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create
-  validates_uniqueness_of :entity_email, :entity_name, message: 'This name or email already exist'
-  { entity_name: 'Which is your company name?', 
-  	entity_email: 'Which is your company email?',
-  	entity_telephone_number: 'tell us your contact number'
-  }.each do |attr, msg|
-   	validates_presence_of attr, message: "#{msg}"
-   	if attr == :entity_telephone_number
-   		validates_format_of attr, with: /(\d\d\d-\d\d-\d\d)|(\d{7})/,
-   					message: 'The contact number format must be ###-##-## or #######'
-   	else
-   		validates_length_of attr, within:2..35,
-  						too_long: 'maximum value size is 20 chars',
-  						too_short: 'the value length must be at least 2 chars'
-
-   	end
-  end
+  validates :entity_email,
+              uniqueness: { case_sensitive: false, message: 'This email already exist' },
+              length: { 
+                within: 10..50,
+                too_long: 'maximum value size is 50 chars',
+                too_short: 'the value length must be at least 10 chars'
+              },
+              format: {
+                with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i,
+                on: :create,
+                message: 'Wrong email format'
+              }
+  validates :entity_name,
+              uniqueness: { case_sensitive: false, message: 'This name already exist' },
+              length: { 
+                within: 2..50,
+                too_long: 'maximum value size is 50 chars',
+                too_short: 'the value length must be at least 2 chars'
+              }
+  validates_presence_of :entity_telephone_number, :entity_email, :entity_name
+  validates_format_of :entity_telephone_number, with: /(\d\d\d-\d\d-\d\d)|(\d{7})/,
+            message: 'The contact number format must be ###-##-## or #######'
+  validate :presence_of_categories
   # =============================end validations==============================
 
   # =============================model relationship===========================
@@ -34,20 +39,18 @@ class Entity < ActiveRecord::Base
   has_many :entity_locations
   has_many :locations, through: :entity_locations
   # =============================end relationship=============================
-
-  def add_categories(arr_categories)
-    categories = Category.where category_name: arr_categories
-    categories.each do |category|
-      self.categories << category
-    end
-    self.save
+  
+  def add_location(arr_locations)
+      loc = Location.where name: arr_locations
+      loc.each do |location|
+          self.locations.push location
+      end
+      self.save
   end
 
-  def add_location(arr_locations)
-    loc = Location.where name: arr_locations
-    loc.each do |location|
-      self.locations << location
-    end
-    self.save
+  def presence_of_categories
+      unless self.categories.length > 0
+          errors.add :categories, 'You must have at least 1 category'
+      end
   end
 end

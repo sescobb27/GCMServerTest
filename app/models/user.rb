@@ -4,19 +4,25 @@ class User < ActiveRecord::Base
   # ===========================end attributes=================================
 
   # ===========================model validations============================
-  validates_uniqueness_of :email
-  validates_length_of :name, within: 10..50,
-                      too_long: 'value size must be less than 50',
-                      too_short: 'value size must be greater than 10'
-  validates_format_of :email,
-                      with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i,
-                      message: 'Invalid format'
+  validates :name, 
+              length: {
+                within: 10..50,
+                too_long: 'value size must be less than 50',
+                too_short: 'value size must be greater than 10'
+              }
+  validates :email,
+              uniqueness: { case_sensitive: false, message: 'This email already exist'  },
+              format: {
+                with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i,
+                message: 'Invalid email format'
+              }
   { birthday: 'You must have at least 10 years old', 
     email: 'can\'t be blank',
     name: 'can\'t be blank'
   }.each do |attr,msg|
-    validates_presence_of attr, msg: "#{msg}"
+      validates_presence_of attr, msg: "#{msg}"
   end
+  validate :valid_birthday
   # =============================end validations==============================
 
   # =============================model relationship===========================
@@ -46,6 +52,14 @@ class User < ActiveRecord::Base
     entities_arr = Entity.where entity_name: entities_arr
     entities_arr.each do |entity|
       self.entities << entity
+    end
+  end
+
+  def valid_birthday
+    if birthday.present? && birthday > (Time.now - 10.years).to_date
+      errors.add(:birthday, "You must have at least 10 years old")
+    elsif not birthday.present?
+      errors.add(:birthday, "Birthday can\'t be blank")
     end
   end
 
