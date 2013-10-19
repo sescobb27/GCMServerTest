@@ -3,7 +3,8 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.14'
 # gem 'rails', '3.2.12'
 gem 'therubyracer'
-gem 'mysql2','~> 0.3.13'
+# gem 'mysql2','~> 0.3.13'
+gem 'pg'
 gem 'gcm_on_rails'
 gem "paperclip", "~> 3.5.1"
 gem 'whenever', :require => false
