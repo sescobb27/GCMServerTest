@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130708185500) do
+ActiveRecord::Schema.define(:version => 20131019041233) do
 
   create_table "categories", :force => true do |t|
     t.datetime "created_at",                         :null => false
@@ -129,11 +129,12 @@ ActiveRecord::Schema.define(:version => 20130708185500) do
   create_table "user_coupons", :force => true do |t|
     t.integer  "user_id",                  :null => false
     t.integer  "coupon_id",                :null => false
-    t.string   "auth_token", :limit => 10, :null => false
+    t.string   "auth_token", :limit => 22, :null => false
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
   end
 
+  add_index "user_coupons", ["auth_token"], :name => "index_user_coupons_on_auth_token", :unique => true
   add_index "user_coupons", ["coupon_id"], :name => "index_user_coupons_on_coupon_id"
   add_index "user_coupons", ["user_id"], :name => "index_user_coupons_on_user_id"
 
@@ -154,7 +155,7 @@ ActiveRecord::Schema.define(:version => 20130708185500) do
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
     t.integer  "gcm_device_id",               :null => false
-    t.string   "secure_token",  :limit => 16, :null => false
+    t.string   "secure_token",  :limit => 22, :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
